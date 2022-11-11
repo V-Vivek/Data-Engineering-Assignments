@@ -1,31 +1,71 @@
 ## Assignment Part-1
 Q1. Why do we call Python as a general purpose and high-level programming language?
 
+-> Python is called as general purpose language because it is not limited to a specific application or use case. In fact it is used in variety of applications like Web Development, Data Analytics, Data Science, Big Data, Application development, etc. Python is called high level language because it is easy to understand & closely resembles to English language.
+
 Q2. Why is Python called a dynamically typed language?
+
+-> Unlike other languages in Python we do not require to declare datatype of a variable. Python dynamically identifies the datatype based on the data stored in the variable.
 
 Q3. List some pros and cons of Python programming language?
 
+->Pros:
+1. Easy to learn
+2. Esay to develop code/application
+3. Wide variety of libraries.
+
+Cons:
+1. Low performance
+2. High memory requirement
+3. Difficult to optimize
+
 Q4. In what all domains can we use Python?
+
+-> Python can be used in Data Science, Data Engineering, Data Analytics, Web Development, Application development, etc.
 
 Q5. What are variable and how can we declare them?
 
+-> Variable is a named entity which references to a memory location. We can store value in variables.
+e.g. a = 10
+
 Q6. How can we take an input from the user in Python?
+
+-> We can use input function in Python to take user input.
+e.g name = input("Enter your name: ")
 
 Q7. What is the default datatype of the value that has been taken as an input using input() function?
 
+-> The default datatype of the value from input function is string.
+
 Q8. What is type casting?
+
+-> With the help of type casting we can change the dataype of a variable.
 
 Q9. Can we take more than one input from the user using single input() function? If yes, how? If no, why?
 
+-> We can use split() function to take multiple inputs from user.
+We can also use input function inside a loop to take input in each iteration of loop.
+
 Q10. What are keywords?
+
+-> Keywords are predefined words in Python. We cannot use these words to name any variable, function, class, etc in our code.
 
 Q11. Can we use keywords as a variable? Support your answer with reason.
 
+-> We cannot use keyword as a variable name. This may override the predefined purpose of the keyword & end up as an error.
+
 Q12. What is indentation? What's the use of indentaion in Python?
+
+-> Indentation is nothing but 4 consecutive spaces in Python. It is used to identify the section/block of code. It is used in functions, classes, loops, decision statements, etc
 
 Q13. How can we throw some output in Python?
 
+-> We can throw output in python using print() function.
+e.g. print("Hello World!!")
+
 Q14. What are operators in Python?
+
+->
 
 Q15. What is difference between / and // operators?
 

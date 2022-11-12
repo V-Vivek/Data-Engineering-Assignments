@@ -91,18 +91,43 @@ True and False and True
 	1 or 0 or 0 -> 1
 
 Q20. What are conditional statements in Python?
+> Conditional statements extecute the block of code contained inside it only if the specified condition is satisfied. They are used to control the flow of code.
 
 Q21. What is use of 'if', 'elif' and 'else' keywords?
+> if: Used to check the first condition.  
+> elif: Used to check the nth condition in a nested if-else statement.  
+> else: It is executed when all conditions in if & elif are not satisfied.
 
 Q22. Write a code to take the age of person as an input and if age >= 18 display "I can vote". If age is < 18 display "I can't vote".
+
+	age = int(input("Enter age: "))
+	if age >= 18:
+		print("I can vote")
+	else:
+		print("I can't vote")
 
 Q23. Write a code that displays the sum of all the even numbers from the given list.
 ```
 numbers = [12, 75, 150, 180, 145, 525, 50]
 ```
 
+	sum = 0
+	for num in numbers:
+		if num %2 == 0:
+			sum = sum + num
+	print(sum)
 
 Q24. Write a code to take 3 numbers as an input from the user and display the greatest no as output.
+
+	n1 = int(input("Enter 1st number: "))
+	n2 = int(input("Enter 2nd number: "))
+	n3 = int(input("Enter 3rd number: "))
+	if n1 > n2 and n1 > n3:
+		print(n1)
+	elif n2 > n1 and n2 > n3:
+		print(n2)
+	else:
+		print(n3)
 
 Q25. Write a program to display only those numbers from a list that satisfy the following conditions
 
@@ -114,3 +139,9 @@ Q25. Write a program to display only those numbers from a list that satisfy the 
 ```
 numbers = [12, 75, 150, 180, 145, 525, 50]
 ```
+
+	for num in numbers:
+		if num > 500:
+			break
+		elif num < 151 and num % 5 == 0:
+			print(num)

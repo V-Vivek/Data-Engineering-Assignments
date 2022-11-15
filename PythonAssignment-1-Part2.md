@@ -143,6 +143,10 @@ numbers = [12, 75, 150, 180, 145, 525, 50]
 			print(num)
 
 Q26. What is a string? How can we declare string in Python?
+> String datatype in Python is used to store character or text data. We can declare string in Python using:
+- Single quotes: 'Big Data'
+- Double quotes: "Big Data"
+- Tripple quotes: ''' Big Data'''
 
 Q27. How can we access the string using its index?
 

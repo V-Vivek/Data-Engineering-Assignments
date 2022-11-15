@@ -149,6 +149,11 @@ Q26. What is a string? How can we declare string in Python?
 - Tripple quotes: ''' Big Data'''
 
 Q27. How can we access the string using its index?
+> We can access string or its part by providing the index no. or range of index nos.
+
+    sample_str = 'Big Data Engineer'
+    sample_str[0:3] -> 'Big'
+    sample_str[ : : -1] -> 'reenignE ataD giB'
 
 Q28. Write a code to get the desired output of the following
 ```
@@ -156,40 +161,74 @@ string = "Big Data iNeuron"
 desired_output = "iNeuron"
 ```
 
+    print(string[9:])
+
 Q29. Write a code to get the desired output of the following
 ```
 string = "Big Data iNeuron"
 desired_output = "norueNi"
 ```
 
+    print(string[-1:-8:-1])
+
 Q30. Resverse the string given in the above question.
+
+    print(string[::-1])
 
 Q31. How can you delete entire string at once?
 
+    del string
+
 Q32. What is escape sequence?
+> Escape sequence ( \ ) is used to treat the special character as a part of string to avoid the errors. 
+> e.g. string = "I opted for \"Big Data Engineering\" course"
 
 Q33. How can you print the below string?
 ```
 'iNeuron's Big Data Course'
 ```
 
+    print("'iNeuron's Big Data Course'")
+    # or
+    print('\'iNeuron\'s Big Data Course\'')
+
 Q34. What is a list in Python?
+> List in python is a sequential datatype. It is used to store different types of data in a sequencial manner.
 
 Q35. How can you create a list in Python?
 
+    sample_list = [1, 'Hi', True, 4.5]
+
 Q36. How can we access the elements in a list?
+> We can access the elements of list using index.
+
+    sample_list = [1, 'Hi', True, 4.5]
+    smaple_list[0] -> 1
+    smaple_list[1] -> 'Hi'
+    smaple_list[-1] -> 4.5
 
 Q37. Write a code to access the word "iNeuron" from the given list.
 ```
 lst = [1,2,3,"Hi",[45,54, "iNeuron"], "Big Data"]
 ``` 
 
+    print(lst[4][2])
+
+
 Q38. Take a list as an input from the user and find the length of the list.
+
+    input_list = input('Enter list items:').split(',')
+    print(input_list)
 
 Q39. Add the word "Big" in the 3rd index of the given list.
 ```
 lst = ["Welcome", "to", "Data", "course"]
 ```
+
+    lst.insert(3, 'Big')
+    # Output -> ["Welcome", "to", "Data", "Big", "course"]
+    lst.insert(2, 'Big')
+    # Output -> ["Welcome", "to", "Big", "Data", "course"]
 
 Q40. What is a tuple? How is it different from list?
 

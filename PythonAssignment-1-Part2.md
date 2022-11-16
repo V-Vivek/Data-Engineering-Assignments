@@ -8,7 +8,7 @@ Q2. Why is Python called a dynamically typed language?
 Q3. List some pros and cons of Python programming language?
 > **Pros:**
 > 1. Easy to learn
-> 2. Esay to develop code/application
+> 2. Easy to develop code/application
 > 3. Wide variety of libraries.
 > **Cons:**
 > 1. Low performance
@@ -42,7 +42,7 @@ Q10. What are keywords?
 Q11. Can we use keywords as a variable? Support your answer with reason.
 > We cannot use keyword as a variable name. This may override the predefined purpose of the keyword & end up as an error.
 
-Q12. What is indentation? What's the use of indentaion in Python?
+Q12. What is indentation? What's the use of indentation in Python?
 > Indentation is nothing but 4 consecutive spaces in Python. It is used to identify the section/block of code. It is used in functions, classes, loops, decision statements, etc
 
 Q13. How can we throw some output in Python?
@@ -71,7 +71,7 @@ Q17. Write a code to take a number as an input from the user and check if the nu
 	print("Even")
 
 Q18. What are boolean operator?
-> Boolean opeartors are used to check if given condition is True or False.
+> Boolean operators are used to check if given condition is True or False.
 
 Q19. What will the output of the following?
 ```
@@ -87,7 +87,7 @@ True and False and True
 	1 or 0 or 0 -> 1
 
 Q20. What are conditional statements in Python?
-> Conditional statements extecute the block of code contained inside it only if the specified condition is satisfied. They are used to control the flow of code.
+> Conditional statements execute the block of code contained inside it only if the specified condition is satisfied. They are used to control the flow of code.
 
 Q21. What is use of 'if', 'elif' and 'else' keywords?
 > if: Used to check the first condition.  
@@ -146,7 +146,7 @@ Q26. What is a string? How can we declare string in Python?
 > String datatype in Python is used to store character or text data. We can declare string in Python using:
 - Single quotes: 'Big Data'
 - Double quotes: "Big Data"
-- Tripple quotes: ''' Big Data'''
+- Triple quotes: ''' Big Data'''
 
 Q27. How can we access the string using its index?
 > We can access string or its part by providing the index no. or range of index nos.
@@ -171,7 +171,7 @@ desired_output = "norueNi"
 
     print(string[-1:-8:-1])
 
-Q30. Resverse the string given in the above question.
+Q30. Reverse the string given in the above question.
 
     print(string[::-1])
 
@@ -193,7 +193,7 @@ Q33. How can you print the below string?
     print('\'iNeuron\'s Big Data Course\'')
 
 Q34. What is a list in Python?
-> List in python is a sequential datatype. It is used to store different types of data in a sequencial manner.
+> List in python is a sequential datatype. It is used to store different types of data in a sequential manner.
 
 Q35. How can you create a list in Python?
 
@@ -231,10 +231,17 @@ lst = ["Welcome", "to", "Data", "course"]
     # Output -> ["Welcome", "to", "Big", "Data", "course"]
 
 Q40. What is a tuple? How is it different from list?
+> Tuple is another type of sequential datatype. We can store different types of data inside it.
+> The difference between Tuple & List is, List is mutable & Tuple is immutable.
 
-Q41. How can you create a tuple in Python?
+Q41. How can you create a tuple in Python
+
+	# Using () brackets
+	tup1 = (1, 2, 'Big', 'Data', 2.0)
 
 Q42. Create a tuple and try to add your name in the tuple. Are you able to do it? Support your answer with reason.
+> We cannot add data after creating the Tuple as tuples are immutable.
+> The only way to update the tuple is to overwrite the entire tuple with required changes.
 
 Q43. Can two tuple be appended. If yes, write a code for it. If not, why?
 
@@ -260,11 +267,11 @@ Q53. What is union() in sets? Explain via code.
 
 Q54. What is intersection() in sets? Explain via code.
 
-Q55. What is dictionary ibn Python?
+Q55. What is dictionary in Python?
 
 Q56. How is dictionary different from all other data structures.
 
-Q57. How can we delare a dictionary in Python?
+Q57. How can we declare a dictionary in Python?
 
 Q58. What will the output of the following?
 ```

@@ -244,6 +244,11 @@ Q42. Create a tuple and try to add your name in the tuple. Are you able to do it
 > The only way to update the tuple is to overwrite the entire tuple with required changes.
 
 Q43. Can two tuple be appended. If yes, write a code for it. If not, why?
+> We can combine two tuples using + operator.
+	tup1 = (1,2,3,4)
+	tup2 = (5,6,7,8)
+	combined_tuple = tup1 + tup2
+	print(combined_tuple)
 
 Q44. Take a tuple as an input and print the count of elements in it.
 

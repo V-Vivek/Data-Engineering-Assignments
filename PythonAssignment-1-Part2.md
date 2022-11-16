@@ -245,6 +245,7 @@ Q42. Create a tuple and try to add your name in the tuple. Are you able to do it
 
 Q43. Can two tuple be appended. If yes, write a code for it. If not, why?
 > We can combine two tuples using + operator.
+
 	tup1 = (1,2,3,4)
 	tup2 = (5,6,7,8)
 	combined_tuple = tup1 + tup2

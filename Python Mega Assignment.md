@@ -418,7 +418,21 @@ Q76. Write a Python program to find the factorial of a given number.
 
 Q77. Write a Python program to calculate the simple interest. Formula to calculate simple interest is SI = (P*R*T)/100
 
+	p = int(input('Enter principal amount: '))
+	r = int(input('Enter annual interest rate: '))
+	t = int(input('Enter time (in years): '))
+
+	simple_interest = (p * r * t) / 100
+	print('Simple interest:', simple_interest)
+
 Q78. Write a Python program to calculate the compound interest. Formula of compound interest is A = P(1+ R/100)^t.
+
+	p = int(input('Enter principal amount: '))
+	r = int(input('Enter annual interest rate: '))
+	t = int(input('Enter time (in years): '))
+
+	compound_interest = p * (1 + r / 100) ** t
+	print('Compound interest:', compound_interest)
 
 Q79. Write a Python program to check if a number is prime or not.
 

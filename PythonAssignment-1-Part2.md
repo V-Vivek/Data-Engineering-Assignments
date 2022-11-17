@@ -278,16 +278,28 @@ Q47. Create a set and add "iNeuron" in your set.
 	s1.add('iNeuron')
 
 Q48. Try to add multiple values using add() function.
+> We cannot add multiple values using add() function.
 
 Q49. How is update() different from add()?
+> update() function can add multiple elements in a set if iterable items like list, tuple, string or another set is providied to it as an argument.
 
 Q50. What is clear() in sets?
+> clear() function is used to delete all elements in set & make it empty.
 
 Q51. What is frozen set?
+> Frozen set is datatype in Pyton. It is similar to set except it is immutable.
 
 Q52. How is frozen set different from set?
+> Set is mutable while frozenset is immutable.
 
 Q53. What is union() in sets? Explain via code.
+> union() in set is used to combine the elements of two different sets.
+
+	s1 = {'Big', 'Data', 'Engineer'}
+	s2 = {1, 2, 3}
+	s1 = s1.union(s2)
+	print(s1)
+	# Output -> {1, 2, 3, 'Data', 'Engineer', 'Big'}
 
 Q54. What is intersection() in sets? Explain via code.
 

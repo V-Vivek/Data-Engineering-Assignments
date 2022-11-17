@@ -290,48 +290,88 @@ Q51. What is frozen set?
 > Frozen set is datatype in Pyton. It is similar to set except it is immutable.
 
 Q52. How is frozen set different from set?
-> Set is mutable while frozenset is immutable.
+> Set is mutable while frozen set is immutable.
 
 Q53. What is union() in sets? Explain via code.
 > union() in set is used to combine the elements of two different sets.
 
 	s1 = {'Big', 'Data', 'Engineer'}
 	s2 = {1, 2, 3}
-	s1 = s1.union(s2)
-	print(s1)
+	print(s1.union(s2))
 	# Output -> {1, 2, 3, 'Data', 'Engineer', 'Big'}
 
 Q54. What is intersection() in sets? Explain via code.
+> intersection() in sets is used to get only those elements which are present in both the sets.
+
+	s1 = {'Data', 'Engineer', 'Software', 'Developer'}
+	s2 = {'Software', 'Engineer', 'Data', 'Science'}
+	print(s1.intersection(s2))
+	# Output -> {'Data', 'Software', 'Engineer'}
 
 Q55. What is dictionary in Python?
+> dictionary data type in Python is used to store data in the form of key-value pairs.
 
 Q56. How is dictionary different from all other data structures.
+> dictionary stores data in key-value pair. While most of the sequential data types use indexes to access data dictionary uses keys.
 
 Q57. How can we declare a dictionary in Python?
+
+	# Empty dictionary
+	dict1 = dict()
+	dict2 = {}
+	
+	# Dictionary with elements
+	dict3 = {'name':'Vivek', 'age':23, 'city':'Pune'}
 
 Q58. What will the output of the following?
 ```
 var = {}
 print(type(var))
 ```
+> <class 'dict'>
 
 Q59. How can we add an element in a dictionary?
+	
+	dict1 = dict()
+	
+	# Method 1
+	dict1.update({'name':'Vivek'})
+	
+	# Method 2
+	dict1['age'] = 23
+	
+	print(dict1)
+	# Output -> {'name': 'Vivek', 'age': 23}
 
 Q60. Create a dictionary and access all the values in that dictionary.
+	
+	dict1 = {'name':'Vivek', 'age':23, 'city':'Pune'}
+	print(dict1.values())
+	# Output -> dict_values(['Vivek', 23, 'Pune'])
 
 Q61. Create a nested dictionary and access all the element in the inner dictionary.
 
+	dict1 = {'name':'Vivek', 'age':23, 'city':'Pune', 'skills': {'language':'Python', 'database':'MySQL'}}
+	print(dict1.get('skills'))
+	# Output -> {'language':'Python', 'database':'MySQL'}
+
 Q62. What is the use of get() function?
+> get() function is used to get value corresponding to the key given as an argument.
 
 Q63. What is the use of items() function?
+> items() function is used to get a list of key-value tuples of a dictionary
 
 Q64. What is the use of pop() function?
+> pop() function is used to get value corresponding to the key given as an argument. It also deletes that key-value pair from dictionary.
 
 Q65. What is the use of popitems() function?
+> It removes the last item inserted from a dictionary.
 
 Q66. What is the use of keys() function?
+> keys() function is used to get all the keys from a dictionary.
 
 Q67. What is the use of values() function?
+> values() function is used to get all the values from a dictionary.
 
 Q68. What are loops in Python?
 

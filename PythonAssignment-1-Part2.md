@@ -266,7 +266,16 @@ Q45. What are sets in Python?
 
 Q46. How can you create a set?
 
+	# Method 1
+	s1 = {1, 2, 3}
+	
+	# Method 2
+	s2 = set([1,2,3])
+	
 Q47. Create a set and add "iNeuron" in your set.
+
+	s1 = {'Big', 'Data', 'Engineer'}
+	s1.add('iNeuron')
 
 Q48. Try to add multiple values using add() function.
 

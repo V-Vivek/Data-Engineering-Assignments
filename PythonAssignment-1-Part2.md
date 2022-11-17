@@ -406,6 +406,16 @@ Q75. How can you loop over a dictionary?
 ### Coding problems
 Q76. Write a Python program to find the factorial of a given number.
 
+	def fact(num):
+	    result = 1
+	    for n in range(2, num+1):
+		result = result * n
+	    return result
+
+	input_number = int(input('Enter a number: '))
+	factorial = fact(input_number)
+	print('Factorial of', input_number, 'is', factorial)
+
 Q77. Write a Python program to calculate the simple interest. Formula to calculate simple interest is SI = (P*R*T)/100
 
 Q78. Write a Python program to calculate the compound interest. Formula of compound interest is A = P(1+ R/100)^t.

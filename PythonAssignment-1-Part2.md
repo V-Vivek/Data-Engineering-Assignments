@@ -374,21 +374,34 @@ Q67. What is the use of values() function?
 > values() function is used to get all the values from a dictionary.
 
 Q68. What are loops in Python?
+> Loops in Python are used to execute a block of code repeatedly until the condition is True.
 
 Q69. How many type of loop are there in Python?
+> In Python there are two types of loops
+- for loop
+- while loop
 
 Q70. What is the difference between for and while loops?
+> Mostly we use 'for loop' for a particular range and we use 'while loop' until a particular condition is True.
 
 Q71. What is the use of continue statement?
+> continue statement is used to skip the current execution of the loop & move to the next iteration.
 
 Q72. What is the use of break statement?
+> break statement is used to exit from the loop.
 
 Q73. What is the use of pass statement?
+> pass statement is used to temporarily execute the program without the block of code which we have planned to develop in future.
 
 Q74. What is the use of range() function?
+> range() function generates range of numbers which have been passed to it as an argument. 
 
 Q75. How can you loop over a dictionary?
+> We can use items() function to loop through a dictionary.
 
+	dict1 = {'name':'Vivek', 'age':23, 'city':'Pune', 'skills': {'language':'Python', 'database':'MySQL'}}
+	for k,v in dict1.items():
+	    print('Key:', k, 'Value:', v)
 
 ### Coding problems
 Q76. Write a Python program to find the factorial of a given number.

@@ -217,8 +217,13 @@ lst = [1,2,3,"Hi",[45,54, "iNeuron"], "Big Data"]
 
 Q38. Take a list as an input from the user and find the length of the list.
 
-    input_list = input('Enter list items:').split(',')
+	# Method 1
+    input_list = input('Enter , separated list items:').split(',')
     print(input_list)
+    
+    # Method 2
+	input_list = eval(input('Enter the list with []: '))
+	print(input_list)
 
 Q39. Add the word "Big" in the 3rd index of the given list.
 ```
@@ -253,7 +258,11 @@ Q43. Can two tuple be appended. If yes, write a code for it. If not, why?
 
 Q44. Take a tuple as an input and print the count of elements in it.
 
+	tup1 = eval(input('Enter the tuple elements:'))
+	print('Length of the tuple is:', len(tup1))
+
 Q45. What are sets in Python?
+> Set is a data type in pyton which is collection of unique elements. It is not indexed.
 
 Q46. How can you create a set?
 

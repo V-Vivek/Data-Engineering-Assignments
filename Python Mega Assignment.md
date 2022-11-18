@@ -485,9 +485,29 @@ Q82. Write a Python program to interchange the first and last element in a list.
 
 Q83. Write a Python program to swap two elements in a list.
 
+	lst = [1, 2, 3, 4, 5]
+	i1 = int(input('Enter 1st index to swap: '))
+	i2 = int(input('Enter 2nd index to swap: '))
+	lst[i1], lst[i2] = lst[i2], lst[i1]
+	print(lst)
+
 Q84. Write a Python program to find N largest element from a list.
 
+	lst = [3, 5, 1, 2, 4]
+	n = int(input('Enter the no. of largest numbers required: '))
+	lst.sort(reverse=True)
+	print(lst[0:n])
+
 Q85. Write a Python program to find cumulative sum of a list.
+
+	lst = [3, 5, 1, 2, 4]
+	cumulative_sum = 0
+	for i in range(len(lst)):
+	    cumulative_sum += lst[i]
+	    lst[i] = cumulative_sum
+
+	print(lst)
+	# Output -> [3, 8, 9, 11, 15]
 
 Q86. Write a Python program to check if a string is palindrome or not.
 

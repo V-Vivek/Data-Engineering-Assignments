@@ -463,9 +463,25 @@ Q80. Write a Python program to check Armstrong Number.
 
 Q81. Write a Python program to find the n-th Fibonacci Number.
 
+	num = int(input('Enter a number: '))
+	fibonacci = [0, 1]
 
+	if num == 0:
+	    print('The nth Fibonacci numbre is 0')
+	elif num == 1:
+	    print('The nth Fibonacci numbre is 1')
+	else:
+	    for n in range(2, num + 1):
+		result = fibonacci[-1] + fibonacci[-2]
+		fibonacci.append(result)
+	    print('The nth Fibonacci numbre is', fibonacci[-1])
 
 Q82. Write a Python program to interchange the first and last element in a list.
+
+	lst = [1, 2, 3, 4, 5]
+	lst[0], lst[-1] = lst[-1], lst[0]
+	print(lst)
+	# Output -> [5, 2, 3, 4, 1]
 
 Q83. Write a Python program to swap two elements in a list.
 

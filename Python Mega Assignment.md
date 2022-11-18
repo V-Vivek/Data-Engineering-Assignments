@@ -511,13 +511,50 @@ Q85. Write a Python program to find cumulative sum of a list.
 
 Q86. Write a Python program to check if a string is palindrome or not.
 
+	s = input('Enter a string: ')
+	reverse_s = s[ : : -1]
+
+	if s.upper() == reverse_s.upper():
+	    print('The string is palindrome ')
+	else:
+	    print('The string is not palindrome ')
+
 Q87. Write a Python program to remove i'th element from a string.
+
+	s = input('Enter a string: ')
+	i = int(input('Enter index of element to be removed: '))
+	s = s[:i] + s[i+1:]
+	print(s)
 
 Q88. Write a Python program to check if a substring is present in a given string.
 
+	s = input('Enter a string: ')
+	substr = input('Enter sub string: ')
+	if s.find(substr) == -1:
+	    print('Substring not present')
+	else:
+	    print('Substring is present')
+
 Q89. Write a Python program to find words which are greater than given length k.
 
+	s = input('Enter a string: ')
+	k = int(input('Enter desired length: '))
+
+	lst = s.split()
+	for word in lst:
+	    if len(word) > k:
+		print(word)
+
 Q90. Write a Python program to extract unquire dictionary values.
+
+	test_dict = {'my': [1, 8, 9, 6],
+		     'big': [10, 11, 9, 1],
+		     'data': [6, 12, 10, 6],
+		     'dict': [5, 2, 1]}
+	result = []
+	for v in test_dict.values():
+	    result += v
+	print(list(set(result)))
 
 Q91. Write a Python program to merge two dictionary.
 

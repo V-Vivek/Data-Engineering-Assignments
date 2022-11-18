@@ -436,9 +436,34 @@ Q78. Write a Python program to calculate the compound interest. Formula of compo
 
 Q79. Write a Python program to check if a number is prime or not.
 
+	num = int(input('Enter a number: '))
+
+	if num == 0 or num ==1:
+		   print('The input number', num, 'is not a prime number')
+	else:
+		for n in range(2, num):
+			if num % n == 0:
+				print('The input number', num, 'is not a prime number')
+				break
+		else:
+			print('The input number', num, 'is a prime number')
+
 Q80. Write a Python program to check Armstrong Number.
 
+	num = input('Enter a number: ')
+	result = 0
+
+	for n in num:
+		result += int(n) ** 3
+
+	if int(num) == result:
+		print(num, 'is a Armstrong number')
+	else:
+		print(num, 'is not a Armstrong number')
+
 Q81. Write a Python program to find the n-th Fibonacci Number.
+
+
 
 Q82. Write a Python program to interchange the first and last element in a list.
 

@@ -571,11 +571,24 @@ Input : [('Sachin', 10), ('MSD', 7), ('Kohli', 18), ('Rohit', 45)]
 Output : {'Sachin': 10, 'MSD': 7, 'Kohli': 18, 'Rohit': 45}
 ```
 
+	lst = [('Sachin', 10), ('MSD', 7), ('Kohli', 18), ('Rohit', 45)]
+	my_dict = dict(lst)
+	print(my_dict)
+	# Output -> {'Sachin': 10, 'MSD': 7, 'Kohli': 18, 'Rohit': 45}
+
 Q93. Write a Python program to create a list of tuples from given list having number and its cube in each tuple.
 ```
 Input: list = [9, 5, 6]
 Output: [(9, 729), (5, 125), (6, 216)]
 ```
+
+	lst = [9, 5, 6]
+	result = []
+	for num in lst:
+		result.append((num, num**3))
+
+	print(result)
+	# Output -> [(9, 729), (5, 125), (6, 216)]
 
 Q94. Write a Python program to get all combinations of 2 tuples.
 ```

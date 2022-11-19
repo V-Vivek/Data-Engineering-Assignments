@@ -653,6 +653,10 @@ Q98. Write a python program to print below pattern.
 * * * * * 
 ```
 
+	n = 5
+	for i in range(1, n+1):
+		print(' ' * (n-i), '* ' * i)
+
 Q99. Write a python program to print below pattern.
 ```
 1 

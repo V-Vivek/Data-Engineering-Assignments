@@ -596,11 +596,32 @@ Input : test_tuple1 = (7, 2), test_tuple2 = (7, 8)
 Output : [(7, 7), (7, 8), (2, 7), (2, 8), (7, 7), (7, 2), (8, 7), (8, 2)]
 ```
 
+	test_tuple1 = (7, 2)
+	test_tuple2 = (7, 8)
+
+	result = []
+	for i in test_tuple1:
+		for j in test_tuple2:
+			result.append((i, j))        
+			result.append((j, i))        
+
+	print(result)
+	# Output -> [(7, 7), (7, 7), (7, 8), (8, 7), (2, 7), (7, 2), (2, 8), (8, 2)]
+
 Q95. Write a Python program to sort a list of tuples by second item.
 ```
 Input : [('for', 24), ('Geeks', 8), ('Geeks', 30)] 
 Output : [('Geeks', 8), ('for', 24), ('Geeks', 30)]
 ```
+
+	lst = [('for', 24), ('Geeks', 8), ('Geeks', 30)]
+
+	def second_item(tup):
+		return tup[1]
+
+	lst.sort(key=second_item)
+	print(lst)
+	# Output -> [('Geeks', 8), ('for', 24), ('Geeks', 30)]
 
 Q96. Write a python program to print below pattern.
 ```

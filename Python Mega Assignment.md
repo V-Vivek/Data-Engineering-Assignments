@@ -680,3 +680,10 @@ C C C
 D D D D 
 E E E E E 
 ```
+
+	import string
+	alpha = list(string.ascii_uppercase)
+	n = 5
+	for i in range(1, n+1):
+		print((alpha[i-1] + ' ') * i)
+		

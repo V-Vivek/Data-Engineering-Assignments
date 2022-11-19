@@ -558,6 +558,13 @@ Q90. Write a Python program to extract unquire dictionary values.
 
 Q91. Write a Python program to merge two dictionary.
 
+	dict1 = {'a':1, 'b':2, 'c':3}
+	dict2 = {'d':4, 'e':5, 'f':6}
+
+	dict1.update(dict2)
+	print(dict1)
+	# Output -> {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6}
+
 Q92. Write a Python program to convert a list of tuples into dictionary.
 ```
 Input : [('Sachin', 10), ('MSD', 7), ('Kohli', 18), ('Rohit', 45)]

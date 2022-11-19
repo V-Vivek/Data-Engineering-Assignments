@@ -214,7 +214,6 @@ lst = [1,2,3,"Hi",[45,54, "iNeuron"], "Big Data"]
 
     print(lst[4][2])
 
-
 Q38. Take a list as an input from the user and find the length of the list.
 
 	# Method 1
@@ -547,10 +546,7 @@ Q89. Write a Python program to find words which are greater than given length k.
 
 Q90. Write a Python program to extract unquire dictionary values.
 
-	test_dict = {'my': [1, 8, 9, 6],
-		     'big': [10, 11, 9, 1],
-		     'data': [6, 12, 10, 6],
-		     'dict': [5, 2, 1]}
+	test_dict = {'my': [1, 8, 9, 6], 'big': [10, 11, 9, 1], 'data': [6, 12, 10, 6], 'dict': [5, 2, 1]}
 	result = []
 	for v in test_dict.values():
 	    result += v

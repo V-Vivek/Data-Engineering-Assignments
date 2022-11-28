@@ -22,6 +22,16 @@ Q6. What is the process for creating a class instance?
 > We can declare & define it similar to any other variable declartion without the self keyword
 
 Q7. What is the process for creating a class?
+```
+# Creating blank class
+class Data():
+	pass
+	
+# Creating a class with a constructor
+class Data()
+	def __init__(self):
+		print("Welcome to the Data class")
+```
 
 Q8. How would you define the superclasses of a class?
 

@@ -1,5 +1,7 @@
 ## Python OOP Assignment
 Q1. What is the purpose of Python's OOP?
+> Python OOP concept helps us to solve complex problems by using objects(Similar to real world)
+> OOP has other advantages like Encapsulation, Ploymorphism, Abstraction, Inheritance, etc.
 
 Q2. Where does an inheritance search look for an attribute?
 

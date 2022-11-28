@@ -1,4 +1,4 @@
-Python OOP Assignment
+## Python OOP Assignment
 Q1. What is the purpose of Python's OOP?
 
 Q2. Where does an inheritance search look for an attribute?
@@ -41,7 +41,8 @@ Q20. What are your options for recovering from an exception in your script?
 
 Q21. Describe two methods for triggering exceptions in your script.
 
-Q22. Identify two methods for specifying actions to be executed at termination time, regardless of whether or not an exception exists.
+Q22. Identify two methods for specifying actions to be executed at termination time, regardless of  
+whether or not an exception exists.
 
 Q23. What is the purpose of the try statement?
 
@@ -61,7 +62,8 @@ Q30. What are Lambda Functions?
 
 Q31. Explain Inheritance in Python with an example?
 
-Q32. Suppose class C inherits from classes A and B as class C(A,B).Classes A and B both have their own versions of method func(). If we call func() from an object of class C, which version gets invoked?
+Q32. Suppose class C inherits from classes A and B as class C(A,B).Classes A and B both have their own versions of method func(). If we call func() from an object of 
+class C, which version gets invoked?
 
 Q33. Which methods/functions do we use to determine the type of instance and inheritance?
 

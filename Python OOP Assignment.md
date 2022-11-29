@@ -63,8 +63,44 @@ emp_1.display()
 ```
 
 Q11. Where and how should be class attributes created?
+> Class attributes should be created directly inside the body of Class.  
+> We can aslo declafe a class attribute outside the class using Class name as prefix.
+```
+class Example():
+	# Class attribute
+	count = 5
+	def __init__(self):
+		pass
+print(Example.count) # Output -> 5
+# Class attribute declared outside of the class
+Example.type = 'Outside'
+print(Example.type)
+```
 
 Q12. Where and how are instance attributes created?
+> Instance attributes are mostly created inside the constructor. It can also be created in a method.
+> Note that self keyword is required to create the instance attribute.
+> We can also create the instance attributes outside the class using the object name as prefix.
+```
+class Person():
+	
+    def __init__(self, name):
+        # Instance attribute declared inside the class
+        self.name = name
+
+    def disp(self):
+        print("Name:", self.name, "& Age:", self.age)
+
+e1 = Person('abc')
+e2 = Person('xyz')
+
+# Instance attributes declared outside of the class
+e1.age = 20
+e2.age = 30
+
+e1.disp() # Outout -> Name: abc & Age: 20
+e2.disp() # Output -> Name: xyz & Age: 30
+```
 
 Q13. What does the term "self" in a Python class mean?
 

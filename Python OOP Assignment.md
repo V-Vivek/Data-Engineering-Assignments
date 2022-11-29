@@ -1,27 +1,28 @@
 ## Python OOP Assignment
 Q1. What is the purpose of Python's OOP?
-> Python OOP concept helps us to solve complex problems by using objects(Similar to real world)
-> OOP has other advantages like Encapsulation, Ploymorphism, Abstraction, Inheritance, etc.
+> Python OOP concept helps us to solve complex problems by using objects(Similar to real world)  
+> OOP has other advantages like Encapsulation, Ploymorphism, Abstraction, Inheritance, etc.  
 
 Q2. Where does an inheritance search look for an attribute?
 > In an inheritance the attribute is first serached in the class the object was created. Later it will search in the upper super classes.
 
 Q3. How do you distinguish between a class object and an instance object?
-> Instance object is always associated with self keyword & it is bound yo a particular object.
-> Class object is bound to a class & hence self keyword is not used.
+> Instance object is always associated with self keyword & it is bound yo a particular object.  
+> Class object is bound to a class & hence self keyword is not used.  
 
 Q4. What makes the first argument in a class’s method function special?
 > In a class the first argument is self keyword. It is nothing but a refernce to the object who called that method.
 
 Q5. What is the purpose of the init method?
-> \__init\__() method in a class is a constructor of that calss
-> It gets called as soon as an object is created.
+> \__init\__() method in a class is a constructor of that calss.  
+> It gets called as soon as an object is created.  
 
 Q6. What is the process for creating a class instance?
-> Class instance can be created anywhere in the body of class.
-> We can declare & define it similar to any other variable declartion without the self keyword
+> Class instance can be created anywhere in the body of class.  
+> We can declare & define it similar to any other variable declartion without the self keyword.  
 
 Q7. What is the process for creating a class?
+> Class is created using the *class* keyword.
 ```
 # Creating blank class
 class Data():
@@ -34,10 +35,32 @@ class Data()
 ```
 
 Q8. How would you define the superclasses of a class?
+> The super classes of the class are the parent class from which the sub-class was created.  
+> The charecteristics of super class are inherited in sub-class.  
 
 Q9. What is the relationship between classes and modules?
+> Classes in Python are the collection of attributes & methods. These can be used only by the objects of the class or the derived class.  
+> Modules in Python are a way to organize code. It can consists of sunctions, classes, methods, etc. We can import the module and use it wherever required.  
 
 Q10. How do you make instances and classes?
+> Class is created using the *class* keyword & we can define the class attributes & methods inside it.  
+> To create instances of a Class we need to create the class objects by passing the arguments if required.  
+```
+# Creating a class
+class Employee():
+	company_name = "Google"
+
+	def __init__(self, name, country):
+		self.name = name
+		self.country = country
+
+	def display(self):
+		print(f"My name is {self.name} and I am from {self.country}, working at {Employee.company_name}")
+		
+# Creating instance/object
+emp_1 = Employee('Vivek', 'India')
+emp_1.display()
+```
 
 Q11. Where and how should be class attributes created?
 

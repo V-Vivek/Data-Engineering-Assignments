@@ -118,24 +118,33 @@ Q17. What are the two most important concepts to grasp in order to comprehend Py
 > Inheritance & Polymorphism are the two most important concepts in Python OOP.
 
 Q18. Describe three applications for exception processing.
-> 1. To handle divide by zero 
-> 2. To handle Index out of range error. 
-> 3. To handle wrong key name for dictionaries.
+1. To handle divide by zero  
+2. To handle index out of range error
+3. To handle wrong key name for dictionaries  
 
 Q19. What happens if you don't do something extra to treat an exception?
+> The program will throw error & stop the further execution if we do not handle the exceptions.
 
 Q20. What are your options for recovering from an exception in your script?
+> We can use try & except to handle the exception in our script.
 
 Q21. Describe two methods for triggering exceptions in your script.
+1. Dividing a value by zero will trigger exception.  
+2. Accessing a dictionary using wrong key will trigger exception.  
 
 Q22. Identify two methods for specifying actions to be executed at termination time, regardless of  
 whether or not an exception exists.
+> finally is used to execute the code regardless of whether or not an exception exists.
 
 Q23. What is the purpose of the try statement?
+> try statement is used to check the error-prone code.
 
 Q24. What are the two most popular try statement variations?
+1. try/except/else  
+2. try/except/finally
 
 Q25. What is the purpose of the raise statement?
+> raise statement is used to raise user defined exceptions.
 
 Q26. What does the assert statement do, and what other statement is it like?
 

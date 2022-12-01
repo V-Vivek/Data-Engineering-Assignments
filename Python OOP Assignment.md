@@ -103,16 +103,24 @@ e2.disp() # Output -> Name: xyz & Age: 30
 ```
 
 Q13. What does the term "self" in a Python class mean?
+> self keyword in python is used to reference the object of the class which instanciated.
 
 Q14. How does a Python class handle operator overloading?
+> In Python operator overloading is handled based on the datatype of the operands/arguments passed to it.
 
 Q15. When do you consider allowing operator overloading of your classes?
+> Whenever we need to handle the data differently based on the datatype of the operands, we will go ahead with operator overloading.
 
 Q16. What is the most popular form of operator overloading?
+> '+' operator is most popular form of operator overloading. It is used to add integers or floats and at the same time it is also used to concatinate strings.
 
 Q17. What are the two most important concepts to grasp in order to comprehend Python OOP code?
+> Inheritance & Polymorphism are the two most important concepts in Python OOP.
 
 Q18. Describe three applications for exception processing.
+> 1. To handle divide by zero 
+> 2. To handle Index out of range error. 
+> 3. To handle wrong key name for dictionaries.
 
 Q19. What happens if you don't do something extra to treat an exception?
 

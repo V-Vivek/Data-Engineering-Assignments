@@ -154,13 +154,59 @@ Q27. What is the purpose of the with/as argument, and what other statement is it
 
 Q28. What are *args, **kwargs?
 
-> *args -> 
+> *args -> It is used to accept any number of arguments to the function
+> **kwrags -> It is used to accept any no. of arguments in any sequence in the form of key-value pairs.
 
 Q29. How can I pass optional or keyword parameters from one function to another?
+> We can pass optional or keyword parameters from one function to another using *args & **kwargs
+```
+def func1(*args, **kwrags):
+	print('func1() passing optional or keyword parameters to func2()')
+	func2(*args, **kwrags)
+
+def func2(*args, **kwrags):
+	pass
+
+```
 
 Q30. What are Lambda Functions?
+> lambda functions are one line functionswhich can accept any no. of arguments but can have only on expression
 
 Q31. Explain Inheritance in Python with an example?
+> Inheritance in Python is used to inherit the properties of parent class into the child class.
+
+```
+class DataDomain():
+    basic_skills = ['Python', 'SQL', 'Problem Solving']
+    tools = [] # Default blank list of tools to avoid errors as it is specific only for DataAnalysis calss
+    def __init__(self, name, advance_skills):
+        self.name =name
+        self.advance_skills = advance_skills
+
+    def skills(self):
+        print(f"{self.name} has these skills -> {self.basic_skills + self.advance_skills + self.tools}")
+
+class DataEngineering(DataDomain):
+    pass
+
+class DataAnalysis(DataDomain):
+    def __init__(self, name, advance_skills, tools):
+        super().__init__(name, advance_skills)
+        self.tools = tools
+
+class DataScience(DataDomain):
+    def __init__(self, name, advance_skills):
+        super().__init__(name, advance_skills)
+
+emp1 = DataDomain('Dave', ['Management', 'Leadership'])
+emp1.skills()
+
+emp2 = DataEngineering('Mike', ['Scala', 'Hadoop', 'Spark'])
+emp2.skills()
+
+emp3 = DataAnalysis('Tom', ['Stats', 'Dashboarding'], ['Tableau', 'PowerBI'])
+emp3.skills()
+```
 
 Q32. Suppose class C inherits from classes A and B as class C(A,B).Classes A and B both have their own versions of method func(). If we call func() from an object of 
 class C, which version gets invoked?

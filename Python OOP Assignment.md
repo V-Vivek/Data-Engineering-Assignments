@@ -147,10 +147,14 @@ Q25. What is the purpose of the raise statement?
 > raise statement is used to raise user defined exceptions.
 
 Q26. What does the assert statement do, and what other statement is it like?
+> The assert statement generates AssertionError if a condition is False. It is similar to raise statement.
 
 Q27. What is the purpose of the with/as argument, and what other statement is it like?
+> with statement is used to handle file management in Python. It is similar to except statement as it handles the errors related to files access.
 
 Q28. What are *args, **kwargs?
+
+> *args -> 
 
 Q29. How can I pass optional or keyword parameters from one function to another?
 

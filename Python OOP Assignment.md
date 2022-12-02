@@ -208,11 +208,13 @@ emp3 = DataAnalysis('Tom', ['Stats', 'Dashboarding'], ['Tableau', 'PowerBI'])
 emp3.skills()
 ```
 
-Q32. Suppose class C inherits from classes A and B as class C(A,B).Classes A and B both have their own versions of method func(). If we call func() from an object of 
-class C, which version gets invoked?
+Q32. Suppose class C inherits from classes A and B as class C(A,B).Classes A and B both have their own versions of method func(). If we call func() from an object of class C, which version gets invoked?
+> The version of func() from class A will be called because while inherting the class C we have written A before B.
 
 Q33. Which methods/functions do we use to determine the type of instance and inheritance?
+> 
 
 Q34.Explain the use of the 'nonlocal' keyword in Python.
+> 
 
 Q35. What is the global keyword?

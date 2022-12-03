@@ -217,7 +217,9 @@ Q33. Which methods/functions do we use to determine the type of instance and inh
 > 2. Use issubclass() to check class inheritance: issubclass(bool, int) is True since bool is a subclass of int. However, issubclass(float, int) is False since float is not a subclass of int.
 
 Q34.Explain the use of the 'nonlocal' keyword in Python.
-> nonlocal keyword is mostly used in nested functions.  
-> 
+- nonlocal keyword is mostly used in nested functions.  
+- It is used in inner function to declare its variable as nonlocal so that its value can be used by the outer function.
 
 Q35. What is the global keyword?
+- global keyword id used to declare a global variable inside function.  
+- We can access this global variable outside the function as well.

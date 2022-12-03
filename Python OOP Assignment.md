@@ -154,8 +154,8 @@ Q27. What is the purpose of the with/as argument, and what other statement is it
 
 Q28. What are *args, **kwargs?
 
-> *args -> It is used to accept any number of arguments to the function
-> **kwrags -> It is used to accept any no. of arguments in any sequence in the form of key-value pairs.
+- *args -> It is used to accept any number of arguments to the function
+- **kwrags -> It is used to accept any no. of arguments in any sequence in the form of key-value pairs.
 
 Q29. How can I pass optional or keyword parameters from one function to another?
 > We can pass optional or keyword parameters from one function to another using *args & **kwargs
@@ -212,9 +212,12 @@ Q32. Suppose class C inherits from classes A and B as class C(A,B).Classes A and
 > The version of func() from class A will be called because while inherting the class C we have written A before B.
 
 Q33. Which methods/functions do we use to determine the type of instance and inheritance?
-> 
+> Python has two built-in functions that work with inheritance:  
+> 1. Use isinstance() to check an instance’s type: isinstance(obj, int) will be True only if obj.__class__ is int or some class derived from int.  
+> 2. Use issubclass() to check class inheritance: issubclass(bool, int) is True since bool is a subclass of int. However, issubclass(float, int) is False since float is not a subclass of int.
 
 Q34.Explain the use of the 'nonlocal' keyword in Python.
+> nonlocal keyword is mostly used in nested functions.  
 > 
 
 Q35. What is the global keyword?

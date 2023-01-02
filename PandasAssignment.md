@@ -19,7 +19,9 @@ print(df.dtypes)
 ```
 
 Q3. How do you select rows from a Pandas DataFrame based on a condition?
-- 
+```
+
+```
 
 Q4. How do you rename columns in a Pandas DataFrame?
 - 

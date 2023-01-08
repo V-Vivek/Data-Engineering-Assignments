@@ -20,31 +20,113 @@ print(df.dtypes)
 
 Q3. How do you select rows from a Pandas DataFrame based on a condition?
 ```
+import pandas as pd
+my_dict = {"name": ['Vivek', 'Dave', 'Tom'], "age": [23, 40, 35]}
+df = pd.DataFrame(my_dict)
 
+# Selecting rows with age greater than 30
+print(df[df['age'] > 30])
 ```
 
 Q4. How do you rename columns in a Pandas DataFrame?
-- 
+```
+import pandas as pd
+my_dict = {"name": ['Vivek', 'Dave', 'Tom'], "age": [23, 40, 35]}
+df = pd.DataFrame(my_dict)
+df.rename(columns = {'name': 'first name'}, inplace = True)
+print(df)
+```
 
 Q5. How do you drop columns in a Pandas DataFrame?
-- 
+```
+import pandas as pd
+my_dict = {"name": ['Vivek', 'Dave', 'Tom'], "age": [23, 40, 35]}
+df = pd.DataFrame(my_dict)
+
+# Using del
+del df['age']
+print(df)
+
+df = pd.DataFrame(my_dict)
+
+# Using pop
+df.pop('age')
+print(df)
+```
 
 Q6. How do you find the unique values in a column of a Pandas DataFrame?
-- 
+```
+import pandas as pd
+my_dict = {"a": [1, 2, 3, 2, 1, 5], "b": [23, 40, 35, 40, 23, 26]}
+df = pd.DataFrame(my_dict)
+print(df['a'].unique())
+```
 
 Q7. How do you find the number of missing values in each column of a Pandas DataFrame?
+```
+import pandas as pd
+my_dict = {"a": [1, 2, None, 2, 1, 5], "b": [None, 40, 35, None, 23, 26]}
+df = pd.DataFrame(my_dict)
+print(df.isnull().sum())
+```
 
 Q8. How do you fill missing values in a Pandas DataFrame with a specific value?
+```
+import pandas as pd
+my_dict = {"a": [1, 2, None, 2, 1, 5], "b": [None, 40, 35, None, 23, 26]}
+df = pd.DataFrame(my_dict)
+df.fillna(999, inplace = True)
+print(df)
+```
 
 Q9. How do you concatenate two Pandas DataFrames?
+```
+import pandas as pd
+df1 = pd.DataFrame(data=[[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
+df2 = pd.DataFrame(data=[[13, 14, 15, 16], [17, 18, 19, 20], [21, 22, 23, 24]])
+df3 = pd.concat([df1, df2])
+print(df3)
+```
 
 Q10. How do you merge two Pandas DataFrames on a specific column?
+```
+import pandas as pd
+df1 = pd.DataFrame(data={'City': ['New York', 'Chicago', 'Los Angeles'], 'Temperature': [65, 70, 75]})
+df2 = pd.DataFrame(data={'City': ['New York', 'Chicago', 'Los Angeles'], 'Humidity': [60, 50, 55]})
+df3 = pd.merge(df1, df2, on = 'City')
+print(df3)
+```
 
 Q11. How do you group data in a Pandas DataFrame by a specific column and apply an aggregation function?
+```
+import pandas as pd
+df = pd.DataFrame({'Animal': ['Dog', 'Cat', 'Dog', 'Fish', 'Fish', 'Fish'],
+                   'Age': [2, 3, 2, 1, 2, 3]})
+
+print(df.groupby('Animal').sum())
+print(df.groupby('Animal').max())
+```
 
 Q12. How do you pivot a Pandas DataFrame?
+```
+import pandas as pd
+df = pd.DataFrame({'Animal': ['Dog', 'Cat', 'Dog', 'Fish', 'Fish', 'Fish'],
+                   'Size': ['Small', 'Small', 'Medium', 'Small', 'Medium', 'Large'],
+                   'Age': [2, 3, 2, 1, 2, 3]})
+
+print(df.pivot(index = 'Animal', columns = ['Size']))
+```
 
 Q13. How do you change the data type of a column in a Pandas DataFrame?
+```
+import pandas as pd
+df = pd.DataFrame({'Animal': ['Dog', 'Cat', 'Dog', 'Fish', 'Fish', 'Fish'],
+                   'Size': ['Small', 'Small', 'Medium', 'Small', 'Medium', 'Large'],
+                   'Age': [2, 3, 2, 1, 2, 3]})
+
+df['Age'] = df['Age'].astype(float)
+print(df.dtypes)
+```
 
 Q14. How do you sort a Pandas DataFrame by a specific column?
 

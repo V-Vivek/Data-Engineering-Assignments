@@ -129,20 +129,87 @@ print(df.dtypes)
 ```
 
 Q14. How do you sort a Pandas DataFrame by a specific column?
+```
+import pandas as pd
+df = pd.DataFrame({'Animal': ['Dog', 'Cat', 'Dog', 'Fish', 'Fish', 'Fish'],
+                   'Size': ['Small', 'Small', 'Medium', 'Small', 'Medium', 'Large'],
+                   'Age': [2, 3, 2, 1, 2, 3]})
+
+df.sort_values(by = ['Age'], inplace = True)
+print(df)
+```
 
 Q15. How do you create a copy of a Pandas DataFrame?
+```
+import pandas as pd
+df = pd.DataFrame({'Animal': ['Dog', 'Cat', 'Dog', 'Fish', 'Fish', 'Fish'],
+                   'Size': ['Small', 'Small', 'Medium', 'Small', 'Medium', 'Large'],
+                   'Age': [2, 3, 2, 1, 2, 3]})
+
+df2 = df.copy()
+print(df2)
+```
 
 Q16. How do you filter rows of a Pandas DataFrame by multiple conditions?
+```
+import pandas as pd
+df = pd.DataFrame({'Name': ['John', 'Jane', 'Bob', 'Alice', 'Mike', 'Carol', 'Steve', 'Kate', 'Adam', 'Tom'],
+                   'Age': [35, 25, 55, 46, 32, 35, 30, 30, 26, 27],
+                   'Gender': ['M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'M']})
+
+new_df = df.loc[(df['Age'] > 30) & (df['Gender'] == 'M')]
+print(new_df)
+```
 
 Q17. How do you calculate the mean of a column in a Pandas DataFrame?
+```
+import pandas as pd
+df = pd.DataFrame({'Name': ['John', 'Jane', 'Bob', 'Alice', 'Mike', 'Carol', 'Steve', 'Kate', 'Adam', 'Tom'],
+                   'Age': [35, 25, 55, 46, 32, 35, 30, 30, 26, 27],
+                   'Gender': ['M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'M']})
+
+print(df['Age'].mean())
+```
 
 Q18. How do you calculate the standard deviation of a column in a Pandas DataFrame?
+```
+import pandas as pd
+df = pd.DataFrame({'Name': ['John', 'Jane', 'Bob', 'Alice', 'Mike', 'Carol', 'Steve', 'Kate', 'Adam', 'Tom'],
+                   'Age': [35, 25, 55, 46, 32, 35, 30, 30, 26, 27],
+                   'Gender': ['M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'M']})
+
+print(df['Age'].std())
+```
 
 Q19. How do you calculate the correlation between two columns in a Pandas DataFrame?
+```
+import pandas as pd
+df = pd.DataFrame({'X': [1, 2, 3, 4, 5],
+                   'Y': [2, 4, 6, 8, 10]})
+
+corr = df['X'].corr(df['Y'])
+print(corr)
+```
 
 Q20. How do you select specific columns in a DataFrame using their labels?
+```
+import pandas as pd
+df = pd.DataFrame({'Name': ['John', 'Jane', 'Bob', 'Alice', 'Mike', 'Carol', 'Steve', 'Kate', 'Adam', 'Tom'],
+                   'Age': [35, 25, 55, 46, 32, 35, 30, 30, 26, 27],
+                   'Gender': ['M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'M']})
+
+print(df.loc[:, ['Name', 'Gender']])
+```
 
 Q21. How do you select specific rows in a DataFrame using their indexes?
+```
+import pandas as pd
+df = pd.DataFrame({'Name': ['John', 'Jane', 'Bob', 'Alice', 'Mike', 'Carol', 'Steve', 'Kate', 'Adam', 'Tom'],
+                   'Age': [35, 25, 55, 46, 32, 35, 30, 30, 26, 27],
+                   'Gender': ['M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'M']})
+
+print(df.iloc[3:9])
+```
 
 Q22. How do you sort a DataFrame by a specific column?
 

@@ -212,9 +212,35 @@ print(df.iloc[3:9])
 ```
 
 Q22. How do you sort a DataFrame by a specific column?
+```
+import pandas as pd
+df = pd.DataFrame({'Animal': ['Dog', 'Cat', 'Dog', 'Fish', 'Fish', 'Fish'],
+                   'Size': ['Small', 'Small', 'Medium', 'Small', 'Medium', 'Large'],
+                   'Age': [2, 3, 2, 1, 2, 3]})
+
+df.sort_values(by = ['Age'], inplace = True)
+print(df)
+```
 
 Q23. How do you create a new column in a DataFrame based on the values of another column?
+```
+import pandas as pd
+df = pd.DataFrame({'Age': [35, 25, 10, 46, 32, 12, 30, 30, 5, 27],
+                   'Gender': ['M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'M']})
+df['Eligible'] = df['Age'] > 18
+print(df)
+```
 
 Q24. How do you remove duplicates from a DataFrame?
+```
+import pandas as pd
+df = pd.DataFrame({'ID': [1, 2, 2, 3, 3, 4, 4, 5],
+                   'Name': ['John', 'Jane', 'Jane', 'Bob', 'Bob', 'Alice', 'Alice', 'Mike']})
+                   
+df = df.drop_duplicates()
+print(df)
+```
 
 Q25. What is the difference between .loc and .iloc in Pandas?
+- ***.loc[]*** is used to select rows and columns by their labels
+- ***.iloc[]*** is used to select rows and columns by their position. It uses an integer index.

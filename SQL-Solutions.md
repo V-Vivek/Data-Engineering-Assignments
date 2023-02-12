@@ -152,7 +152,7 @@ WITH T1 AS
 )
 SELECT ad_id,
 CASE
-  WHEN click_count IS NOT NULL AND view_count IS NOT NULL THEN ROUND(100.0 * (click_count / (click_count + view_count)), 2)
+  WHEN click_count != 0 AND view_count != 0 THEN ROUND(100.0 * (click_count / (click_count + view_count)), 2)
   ELSE 0
 END AS ctr
 FROM T1

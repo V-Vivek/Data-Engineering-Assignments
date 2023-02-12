@@ -74,3 +74,73 @@ FROM STATION
 ORDER BY LENGTH(City) DESC, City
 LIMIT 1;
 ```
+
+### Q11 - Solution
+```
+SELECT DISTINCT City
+FROM Station
+WHERE LEFT(City, 1) IN ('a', 'e', 'i', 'o', 'u');
+```
+
+### Q12 - Solution
+```
+SELECT DISTINCT City
+FROM Station
+WHERE RIGHT(City, 1) IN ('a', 'e', 'i', 'o', 'u');
+```
+
+### Q13 - Solution
+```
+SELECT DISTINCT City
+FROM Station
+WHERE LEFT(City, 1) NOT IN ('a', 'e', 'i', 'o', 'u');
+```
+
+### Q14 - Solution
+```
+SELECT DISTINCT City
+FROM Station
+WHERE RIGHT(City, 1) NOT IN ('a', 'e', 'i', 'o', 'u');
+```
+
+### Q15 - Solution
+```
+SELECT DISTINCT City
+FROM Station
+WHERE LEFT(City, 1) NOT IN ('a', 'e', 'i', 'o', 'u') OR RIGHT(City, 1) NOT IN ('a', 'e', 'i', 'o', 'u');
+```
+
+### Q16 - Solution
+```
+SELECT DISTINCT City
+FROM Station
+WHERE LEFT(City, 1) NOT IN ('a', 'e', 'i', 'o', 'u') AND RIGHT(City, 1) NOT IN ('a', 'e', 'i', 'o', 'u');
+```
+
+### Q17 - Solution
+```
+SELECT DISTINCT s1.product_id, product_name
+FROM Sales s1 JOIN Product p
+ON s1.product_id = p.product_id
+WHERE NOT EXISTS (SELECT DISTINCT s2.product_id FROM Sales s2 WHERE ((s1.product_id = s2.product_id) AND s2.sale_date NOT BETWEEN '2019-01-01' AND '2019-03-31'));
+```
+
+### Q18 - Solution
+```
+SELECT DISTINCT author_id AS id
+FROM views
+WHERE author_id = viewer_id
+ORDER BY id;
+```
+
+### Q19 - Solution
+```
+SELECT
+ROUND (100.0 * (SELECT COUNT(*) FROM Delivery WHERE order_date = customer_pref_delivery_date) / (SELECT COUNT(*) FROM Delivery), 2)
+AS immediate_percentage;
+```
+
+### Q20 - Solution
+```
+
+```

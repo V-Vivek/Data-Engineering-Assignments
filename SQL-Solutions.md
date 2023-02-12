@@ -142,5 +142,19 @@ AS immediate_percentage;
 
 ### Q20 - Solution
 ```
-
+WITH T1 AS
+(
+  SELECT ad_id,
+  SUM(CASE WHEN action = 'Clicked' THEN 1 ELSE 0 END) AS click_count,
+  SUM(CASE WHEN action = 'Viewed' THEN 1 ELSE 0 END) AS view_count
+  FROM Ads
+  GROUP BY 1
+)
+SELECT ad_id,
+CASE
+  WHEN click_count IS NOT NULL AND view_count IS NOT NULL THEN ROUND(100.0 * (click_count / (click_count + view_count)), 2)
+  ELSE 0
+END AS ctr
+FROM T1
+ORDER BY 2 DESC
 ```

@@ -158,3 +158,70 @@ END AS ctr
 FROM T1
 ORDER BY 2 DESC
 ```
+
+Q21 - Solution
+```
+WITH T1 AS
+(
+  SELECT team_id, COUNT(*) AS team_size
+  FROM Employee
+  GROUP BY 1
+)
+SELECT employee_id, team_size
+FROM Employee e JOIN T1
+ON e.team_id = T1.team_id;
+```
+
+Q22 - Solution
+```
+SELECT country_name,
+CASE
+  WHEN AVG(weather_state) < 16 THEN "Cold"
+  WHEN AVG(weather_state) > 24 THEN "Hot"
+  ELSE "Warm"
+END AS weather_type
+FROM Weather w JOIN Countries c
+ON w.country_id = c.country_id
+WHERE day BETWEEN "2019-11-01" AND "2019-11-30"
+GROUP BY 1;
+```
+
+Q23 - Solution
+```
+
+```
+
+Q24 - Solution
+```
+
+```
+
+Q25 - Solution
+```
+
+```
+
+Q26 - Solution
+```
+
+```
+
+Q27 - Solution
+```
+
+```
+
+Q28 - Solution
+```
+
+```
+
+Q29 - Solution
+```
+
+```
+
+Q30 - Solution
+```
+
+```

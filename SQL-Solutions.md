@@ -196,12 +196,30 @@ GROUP BY 1;
 
 Q24 - Solution
 ```
-
+WITH T1 AS 
+(
+  SELECT player_id, event_date AS first_login,
+  ROW_NUMBER() OVER(PARTITION BY player_id ORDER BY event_date) AS rn
+  FROM Activity
+  
+)
+SELECT player_id, first_login
+FROM T1
+WHERE rn = 1;
 ```
 
 Q25 - Solution
 ```
-
+WITH T1 AS 
+(
+  SELECT player_id, device_id,
+  ROW_NUMBER() OVER(PARTITION BY player_id ORDER BY event_date) AS rn
+  FROM Activity
+  
+)
+SELECT player_id, device_id
+FROM T1
+WHERE rn = 1;
 ```
 
 Q26 - Solution

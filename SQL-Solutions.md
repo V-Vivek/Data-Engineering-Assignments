@@ -188,7 +188,10 @@ GROUP BY 1;
 
 Q23 - Solution
 ```
-
+SELECT p.product_id, ROUND(SUM(price * units) / SUM(units), 2) AS average_price
+FROM Prices p JOIN UnitsSold us
+ON p.product_id = us.product_id AND (us.purchase_date BETWEEN p.start_date AND p.end_date)
+GROUP BY 1;
 ```
 
 Q24 - Solution

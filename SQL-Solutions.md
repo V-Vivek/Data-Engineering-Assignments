@@ -297,12 +297,32 @@ ORDER BY 2 DESC, 1;
 
 Q34 - Solution
 ```
-
+SELECT product_name, SUM(unit) AS unit
+FROM products p JOIN Orders o
+ON p.product_id = o.product_id
+WHERE order_date BETWEEN "2020-02-01" AND "2020-02-29"
+GROUP BY 1
+HAVING SUM(unit) > 99;
 ```
 
 Q35 - Solution
 ```
-
+(
+  SELECT name AS results
+  FROM MovieRating mr JOIN Movies m ON mr.movie_id = m.movie_id JOIN Users u ON mr.user_id = u.user_id
+  GROUP BY 1
+  ORDER BY COUNT(*) DESC, 1
+  LIMIT 1
+)
+UNION
+(
+  SELECT title AS results
+  FROM MovieRating mr JOIN Movies m ON mr.movie_id = m.movie_id JOIN Users u ON mr.user_id = u.user_id
+  WHERE created_at BETWEEN "2020-02-01" AND "2020-02-29"
+  GROUP BY 1
+  ORDER BY AVG(rating) DESC, 1
+  LIMIT 1
+)
 ```
 
 Q36 - Solution

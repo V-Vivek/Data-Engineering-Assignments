@@ -257,10 +257,15 @@ HAVING COUNT(*) = 2;
 
 Q29 - Solution
 ```
-
+SELECT title
+FROM TVProgram t JOIN Content c
+ON t.content_id = c.content_id AND Kids_content = "Y" AND content_type = "Movies" AND (program_date BETWEEN "2020-06-01" AND "2020-06-30");
 ```
 
 Q30 - Solution
 ```
-
+SELECT q.id, q.year,
+CASE WHEN npv IS NULL THEN 0 ELSE npv END AS npv
+FROM Queries q LEFT JOIN NPV
+ON q.ID = NPV.id AND q.year = NPV.year;
 ```

@@ -234,12 +234,25 @@ HAVING SUM(unit) > 99;
 
 Q27 - Solution
 ```
-
+SELECT *
+FROM Users
+WHERE mail REGEXP "^[a-zA-Z][a-zA-Z0-9_\\.-]*(@leetcode.com)$";
 ```
 
 Q28 - Solution
 ```
-
+WITH T1 AS
+(
+  SELECT o.customer_id, c.name, MONTH(order_date), SUM(price * quantity) AS spent
+  FROM Orders o JOIN Product p ON o.product_id = p.product_id JOIN Customers c ON o.customer_id = c.customer_id
+  WHERE MONTH(order_date) = 6 OR MONTH(order_date) = 7
+  GROUP BY 1, 2, 3
+  HAVING SUM(price * quantity) > 99
+)
+SELECT customer_id, name
+FROM T1
+GROUP BY 1
+HAVING COUNT(*) = 2;
 ```
 
 Q29 - Solution

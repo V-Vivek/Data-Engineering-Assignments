@@ -269,3 +269,63 @@ CASE WHEN npv IS NULL THEN 0 ELSE npv END AS npv
 FROM Queries q LEFT JOIN NPV
 ON q.ID = NPV.id AND q.year = NPV.year;
 ```
+
+Q31 - Solution
+```
+SELECT q.id, q.year,
+CASE WHEN npv IS NULL THEN 0 ELSE npv END AS npv
+FROM Queries q LEFT JOIN NPV
+ON q.ID = NPV.id AND q.year = NPV.year;
+```
+
+Q32 - Solution
+```
+SELECT unique_id, name
+FROM Employees e LEFT JOIN EmployeeUNI uni
+ON uni.id = e.id;
+```
+
+Q33 - Solution
+```
+SELECT name, 
+CASE WHEN SUM(distance) IS NULL THEN 0 ELSE SUM(distance) END AS travelled_distance
+FROM Users u LEFT JOIN Rides r
+ON u.id = r.user_id
+GROUP BY 1
+ORDER BY 2 DESC, 1;
+```
+
+Q34 - Solution
+```
+
+```
+
+Q35 - Solution
+```
+
+```
+
+Q36 - Solution
+```
+
+```
+
+Q37 - Solution
+```
+
+```
+
+Q38 - Solution
+```
+
+```
+
+Q39 - Solution
+```
+
+```
+
+Q40 - Solution
+```
+
+```

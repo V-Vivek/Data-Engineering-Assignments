@@ -377,3 +377,11 @@ FROM Prices p JOIN UnitsSold us
 ON p.product_id = us.product_id AND (us.purchase_date BETWEEN p.start_date AND p.end_date)
 GROUP BY 1;
 ```
+
+Q41 - Solution
+```
+SELECT name AS warehouse_name, SUM(units * Width * Length * Height) AS volume
+FROM Warehouse w JOIN Products p
+ON w.product_id = p.product_id
+GROUP BY 1;
+```

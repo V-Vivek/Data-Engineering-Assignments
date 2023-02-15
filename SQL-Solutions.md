@@ -327,17 +327,27 @@ UNION
 
 Q36 - Solution
 ```
-
+SELECT name, 
+CASE WHEN SUM(distance) IS NULL THEN 0 ELSE SUM(distance) END AS travelled_distance
+FROM Users u LEFT JOIN Rides r
+ON u.id = r.user_id
+GROUP BY 1
+ORDER BY 2 DESC, 1;
 ```
 
 Q37 - Solution
 ```
-
+SELECT unique_id, name
+FROM Employees e LEFT JOIN EmployeeUNI uni
+ON uni.id = e.id;
 ```
 
 Q38 - Solution
 ```
-
+SELECT s.id, s.name
+FROM Students s LEFT JOIN Departments d
+ON s.department_id = d.id
+WHERE d.name IS NULL;
 ```
 
 Q39 - Solution

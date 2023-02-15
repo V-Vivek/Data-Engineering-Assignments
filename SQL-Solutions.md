@@ -352,10 +352,28 @@ WHERE d.name IS NULL;
 
 Q39 - Solution
 ```
-
+SELECT from_id AS person1, to_id AS person2, COUNT(*) AS call_count, SUM(duration) AS total_duration
+FROM
+(
+  (
+    SELECT from_id, to_id, duration
+    FROM Calls
+    WHERE from_id < to_id
+  ) 
+  UNION ALL
+  (
+    SELECT to_id AS from_id, from_id AS to_id, duration
+    FROM Calls
+    WHERE from_id > to_id
+  )
+) AS T1
+GROUP BY 1, 2;
 ```
 
 Q40 - Solution
 ```
-
+SELECT p.product_id, ROUND(SUM(price * units) / SUM(units), 2) AS average_price
+FROM Prices p JOIN UnitsSold us
+ON p.product_id = us.product_id AND (us.purchase_date BETWEEN p.start_date AND p.end_date)
+GROUP BY 1;
 ```

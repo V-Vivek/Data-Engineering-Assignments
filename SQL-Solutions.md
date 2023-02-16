@@ -385,3 +385,63 @@ FROM Warehouse w JOIN Products p
 ON w.product_id = p.product_id
 GROUP BY 1;
 ```
+
+Q42 - Solution
+```
+WITH T1 AS
+(
+  SELECT sale_date, sold_num
+  FROM Sales
+  WHERE fruit = "apples"
+), 
+T2 AS
+(
+  SELECT sale_date, sold_num
+  FROM Sales
+  WHERE fruit = "oranges"
+)
+SELECT T1.sale_date, T1.sold_num - T2.sold_num AS diff
+FROM T1 JOIN T2
+USING (sale_date)
+ORDER BY 1;
+```
+
+Q43 - Solution
+```
+
+```
+
+Q44 - Solution
+```
+
+```
+
+Q45 - Solution
+```
+
+```
+
+Q46 - Solution
+```
+
+```
+
+Q47 - Solution
+```
+
+```
+
+Q48 - Solution
+```
+
+```
+
+Q49 - Solution
+```
+
+```
+
+Q50 - Solution
+```
+
+```

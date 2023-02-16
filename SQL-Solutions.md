@@ -408,7 +408,10 @@ ORDER BY 1;
 
 Q43 - Solution
 ```
-
+SELECT a1.player_id, a1.event_date - a2.event_date 
+FROM Activity a1 JOIN Activity a2 
+ON a1.player_id = a2.player_id AND a1.event_date != a2.event_date 
+ORDER BY a1.player_id
 ```
 
 Q44 - Solution

@@ -427,17 +427,40 @@ WHERE id IN (SELECT managerId FROM Employee GROUP BY managerId HAVING COUNT(mana
 
 Q45 - Solution
 ```
-
+SELECT COUNT(student_id) as student_numbe, dept_name
+FROM Department d LEFT JOIN Student s
+USING(dept_id)
+GROUP BY dept_name
+ORDER BY 1 DESC, 2;
 ```
 
 Q46 - Solution
 ```
-
+SELECT customer_id
+FROM customer
+GROUP BY customer_id
+HAVING COUNT(DISTINCT product_key) = (SELECT COUNT(*) FROM Product);
 ```
 
 Q47 - Solution
 ```
-
+WITH T1 AS
+(
+  SELECT p.project_id, MAX(e.experience_years) AS max_exp
+  FROM Project p JOIN Employee e
+  ON p.employee_id = e.employee_id
+  GROUP BY p.project_id
+),
+T2 AS
+(
+  SELECT p.project_id, p.employee_id, max_exp
+  FROM Project p JOIN T1
+  ON p.project_id = T1.project_id
+)
+SELECT project_id, T2.employee_id
+FROM T2 JOIN Employee e
+ON T2.employee_id = e.employee_id
+WHERE experience_years = max_exp;
 ```
 
 Q48 - Solution

@@ -408,15 +408,21 @@ ORDER BY 1;
 
 Q43 - Solution
 ```
-SELECT a1.player_id, a1.event_date - a2.event_date 
-FROM Activity a1 JOIN Activity a2 
-ON a1.player_id = a2.player_id AND a1.event_date != a2.event_date 
-ORDER BY a1.player_id
+SELECT ROUND(
+(
+  SELECT COUNT(DISTINCT a1.player_id)
+  FROM Activity a1 JOIN Activity a2
+  ON a1.player_id = a2.player_id AND a1.event_date > a2.event_date
+  WHERE DATEDIFF(a1.event_date, a2.event_date) = 1
+) / COUNT(DISTINCT player_id), 2) AS fraction
+FROM Activity;
 ```
 
 Q44 - Solution
 ```
-
+SELECT name
+FROM Employee
+WHERE id IN (SELECT managerId FROM Employee GROUP BY managerId HAVING COUNT(managerId) > 4);
 ```
 
 Q45 - Solution

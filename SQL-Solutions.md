@@ -490,5 +490,16 @@ ORDER BY 1;
 
 Q50 - Solution
 ```
-
+WITH T1 AS 
+(
+  SELECT player, MAX(score) AS score
+  FROM
+  (
+    (SELECT first_player AS player, MAX(first_score) AS score FROM Matches GROUP BY 1)
+    UNION
+    (SELECT second_player AS player, MAX(second_score) AS score FROM Matches GROUP BY 1)
+  ) AS tmp
+  GROUP BY 1
+) 
+SELECT * FROM T1;
 ```

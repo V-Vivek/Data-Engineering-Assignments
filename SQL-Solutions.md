@@ -490,16 +490,28 @@ ORDER BY 1;
 
 Q50 - Solution
 ```
-WITH T1 AS 
+WITH T1 AS
 (
-  SELECT player, MAX(score) AS score
+  SELECT player_id, MAX(score) AS score
   FROM
   (
-    (SELECT first_player AS player, MAX(first_score) AS score FROM Matches GROUP BY 1)
+    (SELECT first_player AS player_id, MAX(first_score) AS score FROM Matches GROUP BY 1)
     UNION
-    (SELECT second_player AS player, MAX(second_score) AS score FROM Matches GROUP BY 1)
+    (SELECT second_player AS player_id, MAX(second_score) AS score FROM Matches GROUP BY 1)
   ) AS tmp
   GROUP BY 1
-) 
-SELECT * FROM T1;
+),
+T2 AS
+(
+  SELECT group_id, MAX(score) AS max_score
+  FROM T1 JOIN Players p
+  ON T1.player_id = p.player_id
+  GROUP BY group_id
+)
+SELECT p.group_id, MIN(p.player_id) AS player_id
+FROM T1 JOIN Players p
+ON T1.player_id = p.player_id
+JOIN T2 ON p.group_id = T2.group_id AND T1.score = max_score
+GROUP BY 1
+ORDER BY 1;
 ```

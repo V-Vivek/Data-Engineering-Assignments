@@ -465,12 +465,27 @@ WHERE experience_years = max_exp;
 
 Q48 - Solution
 ```
-
+SELECT b.book_id, b.name
+FROM Books b LEFT JOIN Orders o
+ON b.book_id = o.book_id AND dispatch_date >= "2018-06-23"
+WHERE available_from < "2019-05-23"
+GROUP BY  1, 2
+HAVING SUM(quantity) < 10 OR SUM(quantity) IS NULL;
 ```
 
 Q49 - Solution
 ```
-
+WITH T1 AS
+(
+  SELECT student_id, MAX(grade) AS max_grade
+  FROM Enrollments
+  GROUP BY student_id
+)
+SELECT T1.student_id, MIN(course_id) AS course_id, max_grade AS grade
+FROM T1 JOIN Enrollments e
+ON T1.max_grade = e.grade AND T1.student_id = e.student_id
+GROUP BY 1, 3
+ORDER BY 1;
 ```
 
 Q50 - Solution

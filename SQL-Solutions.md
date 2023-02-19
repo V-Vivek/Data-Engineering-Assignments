@@ -542,17 +542,53 @@ WHERE id NOT IN (SELECT customerId FROM Orders);
 
 Q54 - Solution
 ```
-
+WITH T1 AS
+(
+  SELECT team_id, COUNT(*) AS team_size
+  FROM Employee
+  GROUP BY 1
+)
+SELECT employee_id, team_size
+FROM Employee e JOIN T1
+ON e.team_id = T1.team_id;
 ```
 
 Q55 - Solution
 ```
-
+WITH T1 AS
+(
+	SELECT id, c.name
+	FROM Person p JOIN Country c
+	ON LEFT(phone_number, 3) = country_code
+),
+T2 AS
+(
+	SELECT name, AVG(duration) AS avg_duration
+    FROM
+    (
+		(SELECT caller_id AS id, duration FROM Calls)
+		UNION ALL
+		(SELECT callee_id AS id, duration FROM Calls)
+	) AS TMP JOIN T1
+    ON TMP.id = T1.id
+    GROUP BY 1
+)
+SELECT name
+FROM T2
+WHERE T2.avg_duration > (SELECT AVG(duration) FROM Calls);
 ```
 
 Q56 - Solution
 ```
-
+WITH T1 AS
+(
+	SELECT player_id, MIN(event_date) AS min_date
+	FROM Activity
+	GROUP BY 1
+)
+SELECT T1.player_id, device_id
+FROM Activity a JOIN T1
+ON a.player_id = T1.player_id AND event_date = min_date;
 ```
 
 Q57 - Solution

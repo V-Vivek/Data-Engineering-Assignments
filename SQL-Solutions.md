@@ -593,20 +593,37 @@ ON a.player_id = T1.player_id AND event_date = min_date;
 
 Q57 - Solution
 ```
-
+SELECT customer_number
+FROM orders
+GROUP BY customer_number
+ORDER BY COUNT(customer_number) DESC
+LIMIT 1;
 ```
 
 Q58 - Solution
 ```
-
+SELECT DISTINCT c1.seat_id
+FROM Cinema c1 JOIN Cinema c2
+ON ABS(c2.seat_id - c1.seat_id) = 1 AND c1.free = 1 AND c2.free= 1
+ORDER BY 1;
 ```
 
 Q59 - Solution
 ```
-
+SELECT s.name
+FROM salesperson AS s
+WHERE s.sales_id NOT IN (SELECT o.sales_id
+                         FROM orders AS o
+                         WHERE o.com_id = (SELECT c.com_id FROM company AS c WHERE c.name = 'RED')
+                        );
 ```
 
 Q60 - Solution
 ```
-
+SELECT *,
+CASE
+	WHEN x + y > z AND x + z > y AND y + z > x THEN 'Yes'
+	ELSE 'No'
+END AS 'triangle'
+FROM triangle;
 ```

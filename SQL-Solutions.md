@@ -1,5 +1,6 @@
 # Questions link
 https://drive.google.com/file/d/1eT8ck9JJHFPvq0zsWEkrtbtQxXdSjqSB/view
+
 # SQL Questions Set 1
 
 ### Q1 - Solution
@@ -514,4 +515,62 @@ ON T1.player_id = p.player_id
 JOIN T2 ON p.group_id = T2.group_id AND T1.score = max_score
 GROUP BY 1
 ORDER BY 1;
+```
+
+# SQL Questions Set 2
+
+Q51 - Solution
+```
+SELECT name, population, area
+FROM World
+WHERE area >= 3000000 OR population >= 25000000;
+```
+
+Q52 - Solution
+```
+SELECT name
+FROM Customer
+WHERE referee_id!=2 OR referee_id IS NULL;
+```
+
+Q53 - Solution
+```
+SELECT name AS Customers
+FROM Customers
+WHERE id NOT IN (SELECT customerId FROM Orders);
+```
+
+Q54 - Solution
+```
+
+```
+
+Q55 - Solution
+```
+
+```
+
+Q56 - Solution
+```
+
+```
+
+Q57 - Solution
+```
+
+```
+
+Q58 - Solution
+```
+
+```
+
+Q59 - Solution
+```
+
+```
+
+Q60 - Solution
+```
+
 ```

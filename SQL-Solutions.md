@@ -627,3 +627,13 @@ CASE
 END AS 'triangle'
 FROM triangle;
 ```
+
+Q61 - Solution
+```
+SELECT ABS
+(
+	(SELECT MIN(x) FROM Point)
+	-
+	(SELECT MIN(x) FROM Point WHERE x NOT IN (SELECT MIN(x) FROM Point))
+) AS shortest;
+```

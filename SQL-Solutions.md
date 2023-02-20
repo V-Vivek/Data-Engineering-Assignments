@@ -637,3 +637,11 @@ SELECT ABS
 	(SELECT MIN(x) FROM Point WHERE x NOT IN (SELECT MIN(x) FROM Point))
 ) AS shortest;
 ```
+
+Q61 - Solution
+```
+SELECT actor_id, director_id
+FROM ActorDirector
+GROUP BY 1, 2
+HAVING COUNT(*) > 2;
+```

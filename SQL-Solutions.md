@@ -672,7 +672,16 @@ GROUP BY 1;
 
 Q65 - Solution
 ```
-
+SELECT seller_id 
+FROM
+(
+	SELECT seller_id , SUM(price) AS max_sales
+	FROM Sales
+	GROUP BY 1
+) AS T1 
+GROUP BY 1 
+HAVING MAX(max_sales)
+88888888888888888888888888888888888888
 ```
 
 Q66 - Solution

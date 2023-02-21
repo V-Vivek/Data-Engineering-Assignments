@@ -637,11 +637,65 @@ SELECT ABS
 	(SELECT MIN(x) FROM Point WHERE x NOT IN (SELECT MIN(x) FROM Point))
 ) AS shortest;
 ```
+- Follow up: How could you optimise your query if the Point table is ordered in ascending order?
+```
+SELECT ABS
+(
+	(SELECT x FROM Point LIMIT 1)
+	-
+	(SELECT x FROM Point LIMIT 1 OFFSET 1)
+) AS shortest;
+```
 
-Q61 - Solution
+Q62 - Solution
 ```
 SELECT actor_id, director_id
 FROM ActorDirector
 GROUP BY 1, 2
 HAVING COUNT(*) > 2;
+```
+
+Q63 - Solution
+```
+SELECT product_name, year, price
+FROM Sales s JOIN Product p
+ON s.product_id = p.product_id;
+```
+
+Q64 - Solution
+```
+SELECT project_id, ROUND(AVG(experience_years), 2) AS average_years
+FROM Project p JOIN Employee e
+ON p.employee_id = e.employee_id
+GROUP BY 1;
+```
+
+Q65 - Solution
+```
+
+```
+
+Q66 - Solution
+```
+
+```
+
+Q67 - Solution
+```
+
+```
+
+Q68 - Solution
+```
+
+```
+
+Q69 - Solution
+```
+
+```
+
+Q70 - Solution
+```
+
 ```

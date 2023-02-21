@@ -672,21 +672,30 @@ GROUP BY 1;
 
 Q65 - Solution
 ```
-SELECT seller_id 
-FROM
+WITH T1 AS
 (
 	SELECT seller_id , SUM(price) AS max_sales
 	FROM Sales
 	GROUP BY 1
-) AS T1 
-GROUP BY 1 
-HAVING MAX(max_sales)
-88888888888888888888888888888888888888
+)
+SELECT seller_id
+FROM T1
+WHERE max_sales = (SELECT MAX(max_sales) FROM T1);
 ```
 
 Q66 - Solution
 ```
-
+WITH T1 AS 
+(
+  SELECT DISTINCT buyer_id, product_name
+  FROM Sales s JOIN Product p
+  ON s.product_id = p.product_id
+)
+SELECT buyer_id
+FROM T1
+WHERE product_name IN ('S8', 'iPhone')
+GROUP BY 1
+HAVING COUNT(*) = 1
 ```
 
 Q67 - Solution

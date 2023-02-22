@@ -700,7 +700,18 @@ HAVING COUNT(*) = 1
 
 Q67 - Solution
 ```
-
+WITH T1 AS
+(
+  SELECT visited_on, SUM(amount) AS amount
+  FROM Customer
+  GROUP BY 1
+  ORDER BY 1 DESC
+)
+SELECT *,
+ROUND(AVG(amount) OVER(ORDER BY visited_on ROWS BETWEEN 7 PRECEDING AND CURRENT ROW), 2) AS average_amount
+FROM T1
+LIMIT 18446744073709551615
+OFFSET 6
 ```
 
 Q68 - Solution

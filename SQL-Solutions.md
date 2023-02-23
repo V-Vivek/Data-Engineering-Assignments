@@ -723,14 +723,16 @@ FROM Scores;
 
 Q69 - Solution
 ```
-
+**********************************************************
 ```
 
 Q70 - Solution
 ```
-SELECT e.student_id, student_name, subject_name, COUNT(*) AS attended_exams 
-FROM Examinations e JOIN Students s 
+SELECT e.student_id, student_name, sub.subject_name, COUNT(*) AS attended_exams 
+FROM Students s JOIN Subjects sub 
+ON 1 = 1 
+LEFT JOIN Examinations e 
 ON e.student_id = s.student_id 
-JOIN 
 GROUP BY 1, 2, 3;
+**********************************************************
 ```

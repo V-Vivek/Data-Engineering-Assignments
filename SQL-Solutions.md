@@ -728,11 +728,21 @@ Q69 - Solution
 
 Q70 - Solution
 ```
-SELECT e.student_id, student_name, sub.subject_name, COUNT(*) AS attended_exams 
-FROM Students s JOIN Subjects sub 
-ON 1 = 1 
-LEFT JOIN Examinations e 
-ON e.student_id = s.student_id 
-GROUP BY 1, 2, 3;
-**********************************************************
-```
+WITH T1 AS
+(
+  SELECT student_id, subject_name, COUNT(*) AS attended_exams
+  FROM Examinations
+  GROUP BY 1, 2
+),
+T2 AS
+(
+  SELECT s.student_id, student_name, sub.subject_name
+  FROM Students s JOIN Subjects sub
+  ON 1 = 1
+)
+SELECT T2.student_id, student_name, T2.subject_name,
+CASE WHEN attended_exams IS NULL THEN 0 ELSE attended_exams END AS attended_exams
+FROM T2 LEFT JOIN T1
+ON T2.student_id = T1.student_id AND T2.subject_name = T1.subject_name
+ORDER BY 1, 3;
+``` 

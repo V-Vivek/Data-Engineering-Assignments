@@ -754,3 +754,82 @@ FROM T2 LEFT JOIN T1
 ON T2.student_id = T1.student_id AND T2.subject_name = T1.subject_name
 ORDER BY 1, 3;
 ``` 
+
+Q71 - Solution
+```
+WITH T1 AS
+(
+  SELECT employee_id
+  FROM Employees
+  WHERE manager_id = 1 AND employee_id != 1
+),
+T2 AS
+(
+  SELECT employee_id
+  FROM Employees
+  WHERE manager_id IN (SELECT employee_id FROM T1)
+),
+T3 AS
+(
+  SELECT employee_id
+  FROM Employees
+  WHERE manager_id IN (SELECT employee_id FROM T2)
+)
+SELECT * FROM T1 
+UNION 
+SELECT * FROM T2 
+UNION 
+SELECT * FROM T3
+```
+
+Q72 - Solution
+```
+SELECT CONCAT(YEAR(trans_date), "-", MONTH(trans_date)) AS month,
+country,
+COUNT(*) AS trans_count,
+SUM(CASE WHEN state = "approved" THEN 1 ELSE 0 END) AS approved_count,
+SUM(amount) AS trans_total_amount,
+SUM(CASE WHEN state = "approved" THEN amount ELSE 0 END) AS approved_total_amount 
+FROM Transactions 
+GROUP BY 1, 2;
+```
+
+Q73 - Solution
+```
+
+```
+
+Q74 - Solution
+```
+
+```
+
+Q75 - Solution
+```
+
+```
+
+Q76 - Solution
+```
+
+```
+
+Q77 - Solution
+```
+
+```
+
+Q78 - Solution
+```
+
+```
+
+Q79 - Solution
+```
+
+```
+
+Q80 - Solution
+```
+
+```

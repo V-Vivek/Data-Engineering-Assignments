@@ -796,7 +796,20 @@ GROUP BY 1, 2;
 
 Q73 - Solution
 ```
+SELECT a.post_id, action_date 
+FROM Actions a LEFT JOIN Removals r 
+ON a.post_id = r.post_id 
+WHERE extra = "spam"
 
+SELECT 
+ROUND
+(
+  100.0 *
+  (SELECT COUNT(DISTINCT post_id) FROM Removals)
+  /
+  (SELECT action_date, COUNT(DISTINCT post_id), post_id FROM Actions WHERE extra = "spam" GROUP BY 1, 3), 2
+)
+****************************************************
 ```
 
 Q74 - Solution

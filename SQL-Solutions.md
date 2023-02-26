@@ -810,7 +810,15 @@ FROM T1;
 
 Q74 - Solution
 ```
-
+WITH T1 AS
+(
+  SELECT player_id, MIN(event_date) AS first_login 
+  FROM Activity
+  GROUP BY 1
+)
+SELECT ROUND((COUNT(DISTINCT T1.player_id) / (SELECT COUNT(DISTINCT player_id) FROM Activity)), 2) AS fraction
+FROM T1 JOIN Activity a
+ON T1.player_id = a.player_id AND DATEDIFF(T1.first_login, a.event_date) = -1;
 ```
 
 Q75 - Solution

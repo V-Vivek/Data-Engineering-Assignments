@@ -823,12 +823,29 @@ ON T1.player_id = a.player_id AND DATEDIFF(T1.first_login, a.event_date) = -1;
 
 Q75 - Solution
 ```
-
+WITH T1 AS
+(
+  SELECT player_id, MIN(event_date) AS first_login 
+  FROM Activity
+  GROUP BY 1
+)
+SELECT ROUND((COUNT(DISTINCT T1.player_id) / (SELECT COUNT(DISTINCT player_id) FROM Activity)), 2) AS fraction
+FROM T1 JOIN Activity a
+ON T1.player_id = a.player_id AND DATEDIFF(T1.first_login, a.event_date) = -1;
 ```
 
 Q76 - Solution
 ```
-
+WITH T1 AS
+(
+  SELECT company_id,
+  CASE WHEN MAX(salary) < 1000 THEN 0 WHEN MAX(salary) > 10000 THEN 0.49 ELSE 0.24 END AS percent
+  FROM Salaries
+  GROUP BY 1
+)
+SELECT s.company_id, employee_id, employee_name, ROUND((salary - percent * salary)) AS salary
+FROM T1 JOIN Salaries s
+ON T1.company_id = s.company_id;
 ```
 
 Q77 - Solution

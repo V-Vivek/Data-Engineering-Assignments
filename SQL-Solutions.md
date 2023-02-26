@@ -796,20 +796,16 @@ GROUP BY 1, 2;
 
 Q73 - Solution
 ```
-SELECT a.post_id, action_date 
-FROM Actions a LEFT JOIN Removals r 
-ON a.post_id = r.post_id 
-WHERE extra = "spam"
-
-SELECT 
-ROUND
+WITH T1 AS
 (
-  100.0 *
-  (SELECT COUNT(DISTINCT post_id) FROM Removals)
-  /
-  (SELECT action_date, COUNT(DISTINCT post_id), post_id FROM Actions WHERE extra = "spam" GROUP BY 1, 3), 2
+  SELECT DISTINCT action_date,
+  (100.0 * COUNT(r.post_id) OVER(PARTITION BY action_date) / COUNT(a.post_id) OVER(PARTITION BY action_date)) AS percent
+  FROM Actions a LEFT JOIN Removals r
+  ON a.post_id = r.post_id
+  WHERE extra = "spam"
 )
-****************************************************
+SELECT ROUND(AVG(percent), 2) AS average_daily_percent
+FROM T1;
 ```
 
 Q74 - Solution

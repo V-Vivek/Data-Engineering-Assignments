@@ -863,15 +863,49 @@ JOIN Variables v2 ON e.right_operand = v2.name;
 
 Q78 - Solution
 ```
-
+WITH T1 AS
+(
+	SELECT id, c.name
+	FROM Person p JOIN Country c
+	ON LEFT(phone_number, 3) = country_code
+),
+T2 AS
+(
+	SELECT name, AVG(duration) AS avg_duration
+    FROM
+    (
+		(SELECT caller_id AS id, duration FROM Calls)
+		UNION ALL
+		(SELECT callee_id AS id, duration FROM Calls)
+	) AS TMP JOIN T1
+    ON TMP.id = T1.id
+    GROUP BY 1
+)
+SELECT name
+FROM T2
+WHERE T2.avg_duration > (SELECT AVG(duration) FROM Calls);
 ```
 
 Q79 - Solution
 ```
-
+SELECT name
+FROM Employee
+ORDER BY 1
 ```
 
 Q80 - Solution
 ```
-
+WITH T1 AS
+(
+  SELECT EXTRACT(YEAR FROM transaction_date) AS year, product_id, SUM(spend) AS spend
+  FROM user_transactions
+  GROUP BY 1,2
+),
+T2 AS
+(
+  SELECT year, product_id, spend AS curr_year_spend,
+  LAG(spend) OVER(ORDER BY year) AS prev_year_spend
+  FROM T1
+)
+SELECT *, ROUND(100.0 * ((curr_year_spend / prev_year_spend) - 1), 2)  AS yoy_rate FROM T2;
 ```

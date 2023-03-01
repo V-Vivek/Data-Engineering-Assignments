@@ -909,3 +909,64 @@ T2 AS
 )
 SELECT *, ROUND(100.0 * ((curr_year_spend / prev_year_spend) - 1), 2)  AS yoy_rate FROM T2;
 ```
+
+Q81 - Solution
+```
+WITH T1 AS
+(
+  SELECT item_type, SUM(square_footage) AS square_footage, COUNT(*) AS cnt
+  FROM Inventory
+  GROUP BY 1
+)
+SELECT item_type,
+CASE
+  WHEN item_type = 'prime_eligible' THEN FLOOR(500000 / square_footage) * cnt
+  ELSE FLOOR((500000 - (SELECT FLOOR(500000 / square_footage) * square_footage FROM T1 WHERE item_type = 'prime_eligible')) / square_footage) * cnt
+END AS item_count
+FROM T1;
+```
+
+Q82 - Solution
+```
+
+```
+
+Q83 - Solution
+```
+
+```
+
+Q84 - Solution
+```
+
+```
+
+Q85 - Solution
+```
+
+```
+
+Q86 - Solution
+```
+
+```
+
+Q87 - Solution
+```
+
+```
+
+Q88 - Solution
+```
+
+```
+
+Q89 - Solution
+```
+
+```
+
+Q90 - Solution
+```
+
+```

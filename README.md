@@ -1,2 +1,2 @@
 # Big Data Questions
-This repo contains Python questions for Big Data.
+This repo contains questions for Big Data and its possible solutions.

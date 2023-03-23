@@ -2,7 +2,7 @@
 
 2. Store raw data into hdfs location
 ```
-hadoop fs -put 
+hadoop fs -put sales_order_data.csv /tmp
 ```
 
 3. Create a internal hive table "sales_order_csv" which will store csv data sales_order_csv .. make sure to skip header row while creating table

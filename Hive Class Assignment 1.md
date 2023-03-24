@@ -47,13 +47,44 @@ TBLPROPERTIES("skip.header.line.count"="1");
 
 ## 4. Load data from hdfs path into "sales_order_csv" 
 ```
-
+LOAD DATA INPATH '/data/sales_order_data.csv' INTO TABLE sales_order_csv;
 ```
 
-5. Create an internal hive table which will store data in ORC format "sales_order_orc"
+## 5. Create an internal hive table which will store data in ORC format "sales_order_orc"
+```
+CREATE TABLE sales_order_orc
+(
+  ordernumber INT,
+  quantityordered INT,
+  priceeach FLOAT,
+  orderlinenumber INT,
+  sales FLOAT,
+  status STRING,
+  qtr_id INT,
+  month_id INT,
+  year_id INT,
+  productline STRING,
+  msrp INT,
+  productcode STRING,
+  phone STRING,
+  city STRING,
+  state STRING,
+  postalcode STRING,
+  country STRING,
+  teritory STRING,
+  contactlastname STRING,
+  contactfirstname STRING,
+  dealsize STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS ORC;
+```
 
-6. Load data from "sales_order_csv" into "sales_order_orc"
-
+## 6. Load data from "sales_order_csv" into "sales_order_orc"
+```
+INSERT OVERWRITE TABLE sales_order_orc SELECT * FROM sales_order_csv;
+```
 
 Perform below menioned queries on "sales_order_orc" table :
 

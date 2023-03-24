@@ -114,17 +114,33 @@ ORDER BY year_id, qtr_id;
 
 - d. In which quarter sales was minimum
 ```
-
+SELECT year_id AS year, qtr_id AS quarter, ROUND(SUM(sales), 2) AS total_sales
+FROM sales_order_orc
+GROUP BY year_id, qtr_id
+ORDER BY total_sales ASC
+LIMIT 1;
 ```
 
 - e. In which country sales was maximum and in which country sales was minimum
 ```
+SELECT country, ROUND(SUM(sales), 2) AS max_sales
+FROM sales_order_orc
+GROUP BY country
+ORDER BY max_sales DESC
+LIMIT 1;
 
+SELECT country, ROUND(SUM(sales), 2) AS min_sales
+FROM sales_order_orc
+GROUP BY country
+ORDER BY min_sales
+LIMIT 1;
 ```
 
 - f. Calculate quartelry sales for each city
 ```
-
+SELECT year_id AS year, qtr_id AS quarter, city, ROUND(SUM(sales), 2) AS total_sales
+FROM sales_order_orc
+GROUP BY year_id, qtr_id, city;
 ```
 
 - h. Find a month for each year in which maximum number of quantities were sold

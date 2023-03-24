@@ -145,5 +145,14 @@ GROUP BY year_id, qtr_id, city;
 
 - h. Find a month for each year in which maximum number of quantities were sold
 ```
-
+******************************************************
+SELECT year, month
+FROM
+(
+  SELECT year_id AS year, month_id AS month, SUM(quantityordered) AS quantity_sold
+  FROM sales_order_orc
+  GROUP BY year_id, month_id
+) AS T1
+HAVING MAX(quantity_sold);
+*********************************************************
 ```

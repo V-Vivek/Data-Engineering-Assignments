@@ -86,12 +86,48 @@ STORED AS ORC;
 INSERT OVERWRITE TABLE sales_order_orc SELECT * FROM sales_order_csv;
 ```
 
-Perform below menioned queries on "sales_order_orc" table :
+## Perform below menioned queries on "sales_order_orc" table :
 
-a. Calculatye total sales per year
-b. Find a product for which maximum orders were placed
-c. Calculate the total sales for each quarter
-d. In which quarter sales was minimum
-e. In which country sales was maximum and in which country sales was minimum
-f. Calculate quartelry sales for each city
-h. Find a month for each year in which maximum number of quantities were sold
+- a. Calculate total sales per year
+```
+SELECT year_id AS year, ROUND(SUM(sales), 2) AS total_sales
+FROM sales_order_orc
+GROUP BY year_id;
+```
+
+- b. Find a product for which maximum orders were placed
+```
+SELECT productcode, SUM(quantityordered) AS total_orders 
+FROM sales_order_orc
+GROUP BY (productcode)
+ORDER BY total_orders DESC
+LIMIT 1;
+```
+
+- c. Calculate the total sales for each quarter
+```
+SELECT year_id AS year, qtr_id AS quarter, ROUND(SUM(sales), 2) AS total_sales
+FROM sales_order_orc
+GROUP BY year_id, qtr_id
+ORDER BY year_id, qtr_id;
+```
+
+- d. In which quarter sales was minimum
+```
+
+```
+
+- e. In which country sales was maximum and in which country sales was minimum
+```
+
+```
+
+- f. Calculate quartelry sales for each city
+```
+
+```
+
+- h. Find a month for each year in which maximum number of quantities were sold
+```
+
+```

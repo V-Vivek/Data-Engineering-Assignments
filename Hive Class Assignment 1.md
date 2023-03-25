@@ -150,3 +150,21 @@ FROM sales_order_orc AS o
 GROUP BY year_id, month_id
 HAVING SUM(quantityordered) = (SELECT MAX(quantityordered) FROM sales_order_orc AS i WHERE i.year_id = o.year_id GROUP BY i.year_id)
 ```
+
+```
+WITH T1 AS
+(
+  SELECT year_id AS year, month_id AS month, SUM(quantityordered) AS monthly_quantity_ordered
+  FROM sales_order_orc AS o
+  GROUP BY year_id, month_id
+),
+T2 AS
+(
+  SELECT year, MAX(monthly_quantity_ordered) AS max_quantity_ordered
+  FROM T1
+  GROUP BY year
+)
+SELECT T1.year, T1.month
+FROM T1 JOIN T2
+ON T1.year = T2.year AND T1.monthly_quantity_ordered = T2.max_quantity_ordered;
+```

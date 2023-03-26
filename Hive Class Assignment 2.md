@@ -117,30 +117,68 @@ OVERWRITE INTO TABLE address;
 - Install Hadoop & Hive in new nodes
 - Configure them to connect to existing Hadoop cluster
 - Join the new nodes to the cluster
+  
+  
+# Hive Practical questions:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-Hive Practical questions:
-
-Hive Join operations
-
-Create a  table named CUSTOMERS(ID | NAME | AGE | ADDRESS   | SALARY)
-Create a Second  table ORDER(OID | DATE | CUSTOMER_ID | AMOUNT
+## Hive Join operations
+### Create a  table named CUSTOMERS(ID | NAME | AGE | ADDRESS   | SALARY)
+```
+CREATE TABLE customers 
+(
+   id INT,
+   name STRING,
+   age INT,
+   address STRING,
+   salary FLOAT
 )
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS ORC;
+```
 
-Now perform different joins operations on top of these tables
-(Inner JOIN, LEFT OUTER JOIN ,RIGHT OUTER JOIN ,FULL OUTER JOIN)
+### Create a Second  table ORDER(OID | DATE | CUSTOMER_ID | AMOUNT)
+```
+CREATE TABLE orders (
+   oid INT,
+   `date` DATE,
+   customer_id INT,
+   amount FLOAT
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS ORC;
+```
+
+## Now perform different joins operations on top of these tables
+- Inner JOIN
+```
+SELECT id, name, age, address, salary, oid, `date`, amount
+FROM customers c JOIN orders o
+ON c.id = o.customer_id;
+```
+
+- LEFT OUTER JOIN
+```
+SELECT id, name, age, address, salary, oid, `date`, amount
+FROM customers c LEFT JOIN orders o
+ON c.id = o.customer_id;
+```
+
+- RIGHT OUTER JOIN
+```
+SELECT id, name, age, address, salary, oid, `date`, amount
+FROM customers c RIGHT JOIN orders o
+ON c.id = o.customer_id;
+```
+
+- FULL OUTER JOIN
+```
+SELECT id, name, age, address, salary, oid, `date`, amount
+FROM customers c FULL OUTER JOIN orders o
+ON c.id = o.customer_id;
+```
+
 
 BUILD A DATA PIPELINE WITH HIVE
 

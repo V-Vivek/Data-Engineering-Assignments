@@ -180,27 +180,53 @@ ON c.id = o.customer_id;
 ```
 
 
-BUILD A DATA PIPELINE WITH HIVE
+## BUILD A DATA PIPELINE WITH HIVE
 
 Download a data from the given location - 
 https://archive.ics.uci.edu/ml/machine-learning-databases/00360/
 
 1. Create a hive table as per given schema in your dataset 
+```
+CREATE TABLE air_quality_uci 
+(
+  `Date` STRING,
+  Time STRING,
+  CO_GT DOUBLE,
+  PT08_S1_CO INT,
+  NMHC_GT INT,
+  C6H6_GT DOUBLE,
+  PT08_S2_NMHC INT,
+  NOx_GT INT,
+  PT08_S3_NOx INT,
+  NO2_GT INT,
+  PT08_S4_NO2 INT,
+  PT08_S5_O3 INT,
+  T DOUBLE,
+  RH DOUBLE,
+  AH DOUBLE
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ';'
+STORED AS ORC;
+```
 2. try to place a data into table location
-3. Perform a select operation . 
-4. Fetch the result of the select operation in your local as a csv file . 
-5. Perform group by operation . 
-7. Perform filter operation at least 5 kinds of filter examples . 
+```
+LOAD DATA INPATH '/opt/AirQualityUCI.csv' INTO TABLE air_quality_uci;
+```
+3. Perform a select operation
+4. Fetch the result of the select operation in your local as a csv file
+5. Perform group by operation
+7. Perform filter operation at least 5 kinds of filter examples
 8. show and example of regex operation
 9. alter table operation 
-10 . drop table operation
-12 . order by operation . 
-13 . where clause operations you have to perform . 
-14 . sorting operation you have to perform . 
-15 . distinct operation you have to perform . 
-16 . like an operation you have to perform . 
-17 . union operation you have to perform . 
-18 . table view operation you have to perform . 
+10. drop table operation
+12. order by operation
+13. where clause operations you have to perform 
+14. sorting operation you have to perform
+15. distinct operation you have to perform
+16. like an operation you have to perform
+17. union operation you have to perform
+18. table view operation you have to perform
 
 
 

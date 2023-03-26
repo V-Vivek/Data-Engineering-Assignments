@@ -57,23 +57,66 @@ SET hive.exec.dynamic.partition = true;
 SET hive.exec.dynamic.partition.mode = nonstrict;
 ```
 
-## Suppose, I have a CSV file – ‘sample.csv’ present in ‘/temp’ directory with the following entries:
-id first_name last_name email gender ip_address
-How will you consume this CSV file into the Hive warehouse using built-in SerDe?
+## Suppose, I have a CSV file – ‘sample.csv’ present in ‘/temp’ directory with the following entries: id first_name last_name email gender ip_address How will you consume this CSV file into the Hive warehouse using built-in SerDe?
+- By using the SerDe for CSV data type
+```
+CREATE EXTERNAL TABLE my_table
+(
+  id INT, 
+  first_name STRING, 
+  last_name STRING, 
+  email STRING,
+  gender STRING, 
+  ip_address STRING
+)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+WITH SERDEPROPERTIES
+(
+  "separatorChar" = ",",
+  "quoteChar" = "\"",
+  "escapeChar" = "\\"
+)
+STORED AS TEXTFILE
+LOCATION '/temp';
+```
 
+## Suppose, I have a lot of small CSV files present in the input directory in HDFS and I want to create a single Hive table corresponding to these files. The data in these files are in the format: {id, name, e-mail, country}. Now, as we know, Hadoop performance degrades when we use lots of small files.
+### So, how will you solve this problem where we want to create a single Hive table for lots of small files without degrading the performance of the system?
+- We can use ```STORED AS SEQUENCEFILE``` to improve the performance of the system
+- Table Schema
+```
+CREATE TABLE my_table
+(
+  id INT,
+  name STRING,
+  email STRING,
+  country STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS SEQUENCEFILE;
+```
+- Loading the data
+```
+LOAD DATA INPATH '/input/' INTO TABLE my_table;
+```
 
-Suppose, I have a lot of small CSV files present in the input directory in HDFS and I want to create a single Hive table corresponding to these files. The data in these files are in the format: {id, name, e-mail, country}. Now, as we know, Hadoop performance degrades when we use lots of small files.
-So, how will you solve this problem where we want to create a single Hive table for lots of small files without degrading the performance of the system?
-
-
-
+## The following statement failed to execute. What can be the cause?
+```
 LOAD DATA LOCAL INPATH ‘Home/country/state/’
 OVERWRITE INTO TABLE address;
+```
+- The path specified in the above query is invalid. As it is pointing to a directory & not to a specific file.
+- Corrected query
+```
+LOAD DATA LOCAL INPATH 'Home/country/state/address.csv'
+OVERWRITE INTO TABLE address;
+```
 
-The following statement failed to execute. What can be the cause?
-
-Is it possible to add 100 nodes when we already have 100 nodes in Hive? If yes, how?
-
+## Is it possible to add 100 nodes when we already have 100 nodes in Hive? If yes, how?
+- Install Hadoop & Hive in new nodes
+- Configure them to connect to existing Hadoop cluster
+- Join the new nodes to the cluster
 
 
 

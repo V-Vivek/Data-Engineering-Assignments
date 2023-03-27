@@ -225,6 +225,9 @@ SELECT * FROM air_quality_uci LIMIT 10;
 ```
 INSERT OVERWRITE LOCAL DIRECTORY '/vivek/my_exported_data.csv' ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' SELECT * FROM air_quality_uci LIMIT 10;
 ```
+```
+hive  --outputformat=csv2 -e "SELECT * FROM air_quality_uci LIMIT 10" > /vivek/my_file.csv
+```
 
 5. Perform group by operation
 7. Perform filter operation at least 5 kinds of filter examples

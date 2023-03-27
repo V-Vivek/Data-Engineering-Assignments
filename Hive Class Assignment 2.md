@@ -191,30 +191,41 @@ CREATE TABLE air_quality_uci
 (
   `Date` STRING,
   Time STRING,
-  CO_GT DOUBLE,
+  CO_GT STRING,
   PT08_S1_CO INT,
   NMHC_GT INT,
-  C6H6_GT DOUBLE,
+  C6H6_GT STRING,
   PT08_S2_NMHC INT,
   NOx_GT INT,
   PT08_S3_NOx INT,
   NO2_GT INT,
   PT08_S4_NO2 INT,
   PT08_S5_O3 INT,
-  T DOUBLE,
-  RH DOUBLE,
-  AH DOUBLE
+  T STRING,
+  RH STRING,
+  AH STRING
 )
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ';'
-STORED AS ORC;
+TBLPROPERTIES("skip.header.line.count"="1");
 ```
+
 2. try to place a data into table location
 ```
-LOAD DATA INPATH '/opt/AirQualityUCI.csv' INTO TABLE air_quality_uci;
+LOAD DATA LOCAL INPATH 'file:///opt/AirQualityUCI.csv' INTO TABLE air_quality_uci;
 ```
+
 3. Perform a select operation
+```
+SELECT * FROM air_quality_uci LIMIT 10;
+```
+![image](https://user-images.githubusercontent.com/117569148/227983002-debea044-fa7f-4004-a5b5-1a15569db4f5.png)
+
 4. Fetch the result of the select operation in your local as a csv file
+```
+INSERT OVERWRITE LOCAL DIRECTORY '/vivek/my_exported_data.csv' ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' SELECT * FROM air_quality_uci LIMIT 10;
+```
+
 5. Perform group by operation
 7. Perform filter operation at least 5 kinds of filter examples
 8. show and example of regex operation

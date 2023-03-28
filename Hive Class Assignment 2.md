@@ -219,17 +219,26 @@ LOAD DATA LOCAL INPATH 'file:///opt/AirQualityUCI.csv' INTO TABLE air_quality_uc
 ```
 SELECT * FROM air_quality_uci LIMIT 10;
 ```
-![image](https://user-images.githubusercontent.com/117569148/227983002-debea044-fa7f-4004-a5b5-1a15569db4f5.png)
+![image](https://user-images.githubusercontent.com/117569148/228114845-e9602267-ed3c-420f-b2dd-a5ab6cba0305.png)
 
 4. Fetch the result of the select operation in your local as a csv file
 ```
-INSERT OVERWRITE LOCAL DIRECTORY '/vivek/my_exported_data.csv' ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' SELECT * FROM air_quality_uci LIMIT 10;
+INSERT OVERWRITE LOCAL DIRECTORY '/vivek/my_exported_data.csv'
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+SELECT * FROM air_quality_uci 
+LIMIT 10;
 ```
-```
-hive  --outputformat=csv2 -e "SELECT * FROM air_quality_uci LIMIT 10" > /vivek/my_file.csv
-```
+![image](https://user-images.githubusercontent.com/117569148/228114734-324b021b-8778-464f-9fec-224232e4d9d7.png)
 
 5. Perform group by operation
+```
+SELECT `date`, ROUND(AVG(T), 2)
+FROM air_quality_uci
+GROUP BY `date`
+LIMIT 10;
+```
+
 7. Perform filter operation at least 5 kinds of filter examples
 8. show and example of regex operation
 9. alter table operation 
@@ -243,7 +252,37 @@ hive  --outputformat=csv2 -e "SELECT * FROM air_quality_uci LIMIT 10" > /vivek/m
 18. table view operation you have to perform
 
 
+```
+INSERT OVERWRITE TABLE air_quality_uci
+SELECT 
+  `Date`,
+  Time,
+  regexp_replace(CO_GT, ',', '.') as CO_GT,
+  PT08_S1_CO,
+  NMHC_GT,
+  regexp_replace(C6H6_GT, ',', '.') as C6H6_GT,
+  PT08_S2_NMHC,
+  NOx_GT,
+  PT08_S3_NOx,
+  NO2_GT,
+  PT08_S4_NO2,
+  PT08_S5_O3,
+  regexp_replace(T, ',', '.') as T,
+  regexp_replace(RH, ',', '.') as RH,
+  regexp_replace(AH, ',', '.') as AH
+FROM air_quality_uci;
+```
 
+```
+ALTER TABLE air_quality_uci
+CHANGE COLUMN CO_GT CO_GT DECIMAL,
+CHANGE COLUMN C6H6_GT C6H6_GT DECIMAL,
+CHANGE COLUMN T T DECIMAL,
+CHANGE COLUMN RH RH DECIMAL,
+CHANGE COLUMN AH AH DECIMAL;
+
+
+```
 
 
 

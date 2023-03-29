@@ -238,6 +238,7 @@ FROM air_quality_uci
 GROUP BY `date`
 LIMIT 10;
 ```
+![image](https://user-images.githubusercontent.com/117569148/228411361-39dd2c13-d385-4068-a5cf-a2a34b77f398.png)
 
 6. Perform filter operation at least 5 kinds of filter examples
 - Example #1
@@ -287,15 +288,60 @@ LIMIT 10;
 
 
 7. show and example of regex operation
+```
+SELECT *
+FROM air_quality_uci
+WHERE time REGEXP "^18"
+LIMIT 10;
+```
+![image](https://user-images.githubusercontent.com/117569148/228411837-f5e9ac34-dfdc-4ea6-95a3-0b60ac2ae71a.png)
+
 8. alter table operation 
+```
+ALTER TABLE air_quality_uci CHANGE COLUMN t temperature STRING;
+```
+![image](https://user-images.githubusercontent.com/117569148/228412298-1491075b-b69f-4409-9c35-65c2903dba74.png)
+
 9. drop table operation
+```
+
+```
+
 10. order by operation
+```
+
+```
+
 11. where clause operations you have to perform 
+```
+
+```
+
 12. sorting operation you have to perform
+```
+
+```
+
 13. distinct operation you have to perform
+```
+
+```
+
 14. like an operation you have to perform
+```
+
+```
+
 15. union operation you have to perform
+```
+
+```
+
 16. table view operation you have to perform
+```
+
+```
+
 
 
 ```

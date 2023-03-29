@@ -239,17 +239,63 @@ GROUP BY `date`
 LIMIT 10;
 ```
 
-7. Perform filter operation at least 5 kinds of filter examples
-8. show and example of regex operation
-9. alter table operation 
-10. drop table operation
-12. order by operation
-13. where clause operations you have to perform 
-14. sorting operation you have to perform
-15. distinct operation you have to perform
-16. like an operation you have to perform
-17. union operation you have to perform
-18. table view operation you have to perform
+6. Perform filter operation at least 5 kinds of filter examples
+- Example #1
+```
+SELECT *
+FROM air_quality_uci
+WHERE t < 20
+LIMIT 10;
+```
+![image](https://user-images.githubusercontent.com/117569148/228409841-6b1d28a9-1bb5-4277-bf0b-fa92e456f5fc.png)
+
+- Example #2
+```
+SELECT *
+FROM air_quality_uci
+WHERE t = 20
+LIMIT 10;
+```
+![image](https://user-images.githubusercontent.com/117569148/228410082-1affc60a-d844-4c46-b6c3-ca47e1ca9372.png)
+
+- Example #3
+```
+SELECT *
+FROM air_quality_uci
+WHERE co_gt BETWEEN 0.5 AND 2.5
+LIMIT 10;
+```
+![image](https://user-images.githubusercontent.com/117569148/228410459-66351c4e-80e9-4e22-b19d-8020d9749b55.png)
+
+- Example #4
+```
+SELECT *
+FROM air_quality_uci
+WHERE `date` LIKE "1%"
+LIMIT 10;
+```
+![image](https://user-images.githubusercontent.com/117569148/228410666-466300ac-5e7e-46b7-9e63-cf10f1176224.png)
+
+- Example #5
+```
+SELECT *
+FROM air_quality_uci
+WHERE rh IS NOT NULL
+LIMIT 10;
+```
+![image](https://user-images.githubusercontent.com/117569148/228410965-3606916c-170a-41f6-b8a7-23fd23285162.png)
+
+
+7. show and example of regex operation
+8. alter table operation 
+9. drop table operation
+10. order by operation
+11. where clause operations you have to perform 
+12. sorting operation you have to perform
+13. distinct operation you have to perform
+14. like an operation you have to perform
+15. union operation you have to perform
+16. table view operation you have to perform
 
 
 ```
@@ -271,17 +317,6 @@ SELECT
   regexp_replace(RH, ',', '.') as RH,
   regexp_replace(AH, ',', '.') as AH
 FROM air_quality_uci;
-```
-
-```
-ALTER TABLE air_quality_uci
-CHANGE COLUMN CO_GT CO_GT DECIMAL,
-CHANGE COLUMN C6H6_GT C6H6_GT DECIMAL,
-CHANGE COLUMN T T DECIMAL,
-CHANGE COLUMN RH RH DECIMAL,
-CHANGE COLUMN AH AH DECIMAL;
-
-
 ```
 
 

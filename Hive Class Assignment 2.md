@@ -304,7 +304,7 @@ ALTER TABLE air_quality_uci CHANGE COLUMN t temperature STRING;
 
 9. drop table operation
 ```
-
+DROP TABLE air_quality_uci;
 ```
 
 10. order by operation
@@ -331,8 +331,9 @@ SELECT *
 FROM air_quality_uci
 DISTRIBUTE BY time
 SORT BY rh DESC
-LIMIT 20;
+LIMIT 10;
 ```
+![image](https://user-images.githubusercontent.com/117569148/228591981-29ff3dba-b605-4e81-a70f-29ad91c58b98.png)
 
 13. distinct operation you have to perform
 ```
@@ -353,39 +354,34 @@ LIMIT 10;
 
 15. union operation you have to perform
 ```
-
+(
+  SELECT *
+  FROM air_quality_uci
+  WHERE rh = 60
+  LIMIT 5
+)
+UNION
+(
+  SELECT *
+  FROM air_quality_uci
+  WHERE rh = 70
+  LIMIT 5
+);
 ```
+![image](https://user-images.githubusercontent.com/117569148/228593150-2b7d4088-19b3-44a8-a24b-2803d52b30d2.png)
 
 16. table view operation you have to perform
 ```
+CREATE VIEW myview AS
+SELECT `date`, time, rh
+FROM air_quality_uci
+WHERE rh > 18;
 
+SELECT * FROM myview LIMIT 5;
 ```
+![image](https://user-images.githubusercontent.com/117569148/228594320-4320f9de-d1dc-452c-9a57-d9f53f3f82d4.png)
 
 
-
-```
-INSERT OVERWRITE TABLE air_quality_uci
-SELECT 
-  `Date`,
-  Time,
-  regexp_replace(CO_GT, ',', '.') as CO_GT,
-  PT08_S1_CO,
-  NMHC_GT,
-  regexp_replace(C6H6_GT, ',', '.') as C6H6_GT,
-  PT08_S2_NMHC,
-  NOx_GT,
-  PT08_S3_NOx,
-  NO2_GT,
-  PT08_S4_NO2,
-  PT08_S5_O3,
-  regexp_replace(T, ',', '.') as T,
-  regexp_replace(RH, ',', '.') as RH,
-  regexp_replace(AH, ',', '.') as AH
-FROM air_quality_uci;
-```
-
-
-
-hive operation with python
+## hive operation with python
 
 Create a python application that connects to the Hive database for extracting data, creating sub tables for data processing, drops temporary tables.fetch rows to python itself into a list of tuples and mimic the join or filter operations

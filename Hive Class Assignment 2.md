@@ -309,28 +309,47 @@ ALTER TABLE air_quality_uci CHANGE COLUMN t temperature STRING;
 
 10. order by operation
 ```
-
+SELECT *
+FROM air_quality_uci
+ORDER BY `date` DESC
+LIMIT 10;
 ```
+![image](https://user-images.githubusercontent.com/117569148/228585398-acc75811-22b4-490f-b4e4-31eea1e036c5.png)
 
 11. where clause operations you have to perform 
 ```
-
+SELECT *
+FROM air_quality_uci
+WHERE t = 20
+LIMIT 10;
 ```
+![image](https://user-images.githubusercontent.com/117569148/228410082-1affc60a-d844-4c46-b6c3-ca47e1ca9372.png)
 
 12. sorting operation you have to perform
 ```
-
+SELECT *
+FROM air_quality_uci
+DISTRIBUTE BY time
+SORT BY rh DESC
+LIMIT 20;
 ```
 
 13. distinct operation you have to perform
 ```
-
+SELECT DISTINCT `date`
+FROM air_quality_uci
+LIMIT 10;
 ```
+![image](https://user-images.githubusercontent.com/117569148/228586681-a04c49bb-4a1c-4116-b498-0a0272307e54.png)
 
 14. like an operation you have to perform
 ```
-
+SELECT *
+FROM air_quality_uci
+WHERE `date` LIKE "1%"
+LIMIT 10;
 ```
+![image](https://user-images.githubusercontent.com/117569148/228410666-466300ac-5e7e-46b7-9e63-cf10f1176224.png)
 
 15. union operation you have to perform
 ```

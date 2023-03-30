@@ -385,3 +385,32 @@ SELECT * FROM myview LIMIT 5;
 ## hive operation with python
 
 Create a python application that connects to the Hive database for extracting data, creating sub tables for data processing, drops temporary tables.fetch rows to python itself into a list of tuples and mimic the join or filter operations
+
+```
+from pyhive import hive
+from pyspark.sql import SparkSession
+import pandas as pd
+
+# Connect to Hive database
+conn = hive.Connection(host="localhost", port=10000, username="root")
+cursor = conn.cursor()
+
+# Extract data from Hive database
+cursor.execute("SELECT * FROM my_table")
+data = cursor.fetchall()
+
+# Create sub tables for data processing
+sub_table = [row for row in data if row[2] == 1000]
+
+# Drop temporary tables
+cursor.execute("DROP TABLE my_temp_table")
+
+# Fetch rows to Python itself into a list of tuples
+spark = SparkSession.builder.appName("myApp").getOrCreate()
+df = spark.createDataFrame(data)
+tuple_list = df.collect()
+
+# Mimic the join or filter operations
+df = pd.DataFrame(data, columns=['name', 'age', 'salary'])
+sub_df = df[df['salary'] == 1000]
+```

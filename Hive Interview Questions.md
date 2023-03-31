@@ -22,10 +22,21 @@
 - 
 
 8. How to create a Database in HIVE?
-- 
+```
+CREATE DATABASE mydb;
+```
 
 9. How to create a table in HIVE?
-- 
+```
+CREATE TABLE mytable
+(
+  col1 INT,
+  col2 STRING,
+  col3 DECIMAL
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',';
+```
 
 10. What do you mean by describe and describe extended and describe formatted with respect to database and table
 - 

@@ -1,7 +1,7 @@
 # Hive Interview Questions
 
 1. What is the definition of Hive? What is the present version of Hive?
-- 
+- Hive is a Data Warehousing framework built on top of Hadoop. The current version of Hive is 4.0.0-aplha-2
 
 2. Is Hive suitable to be used for OLTP systems? Why?
 - 

@@ -183,34 +183,101 @@ INSERT INTO table_name (column_name1, column_name2, ...) VALUES (value1, value2,
 ```
 
 15. Explain about SORT BY, ORDER BY, DISTRIBUTE BY and CLUSTER BY in Hive.
-- 
+- ***SORT BY:*** This clause is used to sort the output of a Hive query based on one or more columns. SORT BY sorts the data after the reducer phase, which means that all the data is first collected by the reducers and then sorted. SORT BY does not guarantee any specific ordering of the data within the reducers.
+```
+SELECT name, age FROM employees SORT BY age DESC;
+```
+
+- ***ORDER BY:*** This clause is used to sort the output of a Hive query based on one or more columns. ORDER BY sorts the data before the reducer phase, which means that the data is first sorted by the mappers and then sent to the reducers. ORDER BY guarantees a specific ordering of the data within the reducers.
+```
+SELECT name, age FROM employees ORDER BY age DESC;
+```
+
+- ***DISTRIBUTE BY:*** This clause is used to distribute the data across different reducers based on the value of one or more columns. DISTRIBUTE BY determines which reducer each record will go to based on the result of a hash function applied to the column(s) specified in the clause. DISTRIBUTE BY does not guarantee any specific ordering of the data within the reducers.
+```
+SELECT name, age FROM employees DISTRIBUTE BY age;
+```
+
+- ***CLUSTER BY:*** This clause is similar to DISTRIBUTE BY, but it also sorts the data within each reducer based on the value of the column(s) specified in the clause. CLUSTER BY is a combination of DISTRIBUTE BY and SORT BY, and it guarantees a specific ordering of the data within the reducers.
+```
+SELECT name, age FROM employees CLUSTER BY age DESC;
+```
 
 16. Difference between "Internal Table" and "External Table" and Mention when to choose “Internal Table” and “External Table” in Hive?
-- 
+### ***Internal Table:*** 
+- An internal table is a table where the data and metadata are managed by Hive. 
+- This means that when you create an internal table, Hive creates a directory in HDFS and stores the data files within that directory.
+- Internal tables are tightly coupled with Hive and cannot be accessed or modified by other tools outside of Hive.
+- You should choose internal tables when you want to have full control over the data and metadata.Since internal tables are tightly coupled with Hive, you can use all of Hive's features and capabilities to manage the data. Additionally, internal tables provide better performance than external tables since they don't need to read the data from an external source.
+```
+CREATE TABLE employee (id INT, name STRING, salary FLOAT) STORED AS ORC;
+```
+
+### ***External Table:*** 
+- An external table is a table where the data is managed by an external tool, and Hive only manages the metadata. 
+- This means that when you create an external table, Hive only creates a pointer to the data files stored in HDFS or in an external storage system. 
+- External tables are loosely coupled with Hive and can be accessed and modified by other tools outside of Hive.
+- You should choose external tables when you want to share data between different tools or systems. Since external tables are loosely coupled with Hive, you can access and modify the data using other tools such as Spark or Pig. Additionally, external tables are useful when you want to store data in a storage system that is not managed by Hive, such as S3 or HBase.
+```
+CREATE EXTERNAL TABLE employee_external (id INT, name STRING, salary FLOAT) STORED AS ORC LOCATION '/user/hive/employee';
+```
 
 17. Where does the data of a Hive table get stored?
-- 
+- If you create an internal table, Hive creates a directory in HDFS and stores the data files within that directory. 
+- If you create an external table, Hive creates a pointer to the data files stored in HDFS or in an external storage system.
 
 18. Is it possible to change the default location of a managed table?
-- 
+- Yes, it is possible to change the default location of a managed table in Hive.
+- We can override the default location by specifying a different location when you create the table.
+```
+CREATE TABLE my_table (col1 INT, col2 STRING)
+LOCATION '/custom/path/to/my_table';
+```
 
 19. What is a metastore in Hive? What is the default database provided by Apache Hive for metastore?
-- 
+- In Hive, the metastore is a central repository that stores metadata about the tables, databases, columns, partitions, and other objects created in Hive. 
+- The metastore is used by Hive to track information about the data stored in Hadoop, including the schema of the data, its location and the format of the files. 
+- The metastore is typically implemented using RDBMS such as MySQL or PostgreSQL.
+- The default database provided by Apache Hive for metastore is Derby.
 
 20. Why does Hive not store metadata information in HDFS?
-- 
+- Hive does not store metadata information in HDFS because HDFS is designed for storing large files and is optimized for data access and retrieval, rather than efficient metadata management. 
+- Storing metadata in HDFS would require a lot of disk I/O operations and could slow down the performance of Hive queries.
+- Storing metadata in an RDBMS also provides other advantages, such as transactional consistency and scalability, which are important for large-scale deployments of Hive
 
 21. What is a partition in Hive? And Why do we perform partitioning in Hive?
-- 
+- In Hive, a partition is a way of dividing a large table into smaller, more manageable parts based on a particular column or set of columns. 
+- Each partition contains a subset of the data in the table, with all rows in a partition sharing the same value for the partition column(s).
+- Partitioning in Hive is done for several reasons:
+- ***Improved query performance:*** By dividing the data into smaller partitions, Hive can skip over entire partitions that are not relevant to a query, reducing the amount of data that needs to be processed.
+- ***Easier management:*** Partitioning makes it easier to manage large tables, as you can add, drop, or modify partitions without affecting the entire table.
+- ***Better data organization:*** Partitioning allows you to organize your data based on specific criteria, such as time or location, which can make it easier to analyze and understand the data.
 
 22. What is the difference between dynamic partitioning and static partitioning?
-- 
+### Dynamic Partitioning
+- It allows Hive to create partitions automatically based on the values in the data.
+- In dynamic partitioning, the partition columns are specified in the INSERT statement itself.
+- The dynamic partitioning process requires a large amount of data shuffling and can be resource-intensive.
+- Dynamic partitioning is more flexible and easier to use, as it allows for partitions to be created on the fly.
+
+### Static partitioning 
+- It requires users to predefine the partitions and their values before loading data into the table.
+- In static partitioning, the partition columns are specified in the CREATE TABLE statement itself.
+- The static partitioning process is more efficient and less resource-intensive than dynamic partitioning, as the partitioning is done at the time of data loading, and there is no need for data shuffling.
+- Static partitioning is suitable for tables with a fixed set of partitions that are known in advance.
 
 23. How do you check if a particular partition exists?
-- 
+- To check if a particular partition exists in a Hive table, you can use the SHOW PARTITIONS command and the partition filter condition. 
+- Here is the syntax for checking if a partition exists:
+```
+SHOW PARTITIONS table_name [PARTITION(partition_column=value)];
+```
 
 24. How can you stop a partition form being queried?
-- 
+- In Hive, you can prevent a specific partition from being queried by using the ALTER TABLE command to mark it as "offline". 
+```
+ALTER TABLE table_name PARTITION (partition_column=value) SET OFFLINE;
+```
 
 25. Why do we need buckets? How Hive distributes the rows into buckets?
 - 

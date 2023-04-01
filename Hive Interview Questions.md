@@ -280,55 +280,121 @@ ALTER TABLE table_name PARTITION (partition_column=value) SET OFFLINE;
 ```
 
 25. Why do we need buckets? How Hive distributes the rows into buckets?
-- 
+- Bucketing is a way of dividing a large dataset into smaller, more manageable files based on a hash function applied to a chosen column.
+- The primary reason to use buckets is to optimize queries that use GROUP BY or JOIN operations. 
+- When you bucket a table, Hive will write the rows into separate files based on the hash function applied to the bucketing column. 
+- This means that rows that share the same value for the bucketing column will end up in the same bucket file.
+- To distribute the rows into buckets, Hive uses a hash function to assign each row to a bucket based on the value of the bucketing column. 
+- The hash function ensures that rows with the same value for the bucketing column are assigned to the same bucket
 
 26. In Hive, how can you enable buckets?
-- 
+- To enable buckets in Hive, you need to create a table with the CLUSTERED BY clause, which specify the bucketing column. 
+- You also need to specify the number of buckets you want to create using the INTO n BUCKETS clause, where n is the number of buckets.
+```
+CREATE TABLE my_table 
+(
+  id INT,
+  name STRING,
+  age INT,
+  address STRING
+)
+CLUSTERED BY (id)
+INTO 10 BUCKETS;
+```
 
 27. How does bucketing help in the faster execution of queries?
-- 
+- Bucketing can help in faster execution of queries in Hive because it allows for more efficient data retrieval and processing.
+- When you execute a query on a bucketed table, Hive can use the bucketing information to optimize the query processing. 
+- For example, if you're querying on the bucketing column, Hive can skip reading data from the other buckets that don't contain the relevant data, resulting in faster query execution.
+- Additionally, bucketing can also help with data skew, which occurs when certain values in a column are overrepresented in the data.
 
 28. How to optimise Hive Performance? Explain in very detail.
-- 
+- ***Partitioning:*** Partitioning is a technique used to divide large tables into smaller, more manageable pieces based on the values in one or more columns. By partitioning a table, Hive can skip scanning the irrelevant partitions during query execution, which can significantly reduce query response time. In addition, partitioning can also help to balance data skew and improve data compression.
+
+- ***Bucketing:*** Bucketing is a technique used to organize data into a set of files based on the value of one or more columns. It can be used to improve query performance by reducing the amount of data that needs to be read during query execution. Bucketing is particularly useful when you frequently query on a specific column, as it can allow Hive to skip reading the irrelevant data in other buckets.
+
+- ***Use appropriate file formats:*** Hive supports a variety of file formats, each with its own advantages and disadvantages in terms of performance, compression, and storage. For example, ORC and Parquet are columnar storage formats that can provide significant performance improvements and storage savings for queries that only need to access a subset of columns. Similarly, Gzip and Snappy are popular compression codecs that can help to reduce file size and improve query performance by reducing I/O time.
+
+- ***Data compression:*** Data compression is an effective way to reduce the size of large data sets and improve query performance by reducing I/O time. In Hive, you can compress data using codecs like Gzip, Snappy, and LZO. However, compression can also introduce a CPU overhead during data access, so it's important to find the right balance between compression and decompression time.
 
 29. What is the use of Hcatalog?
-- 
+- HCatalog is a table and storage management layer for Hadoop that enables users to share data between Apache Hive, Apache Pig, and MapReduce. 
+- It is essentially a metadata management service that allows users to store and share metadata about data stored in Hadoop.
+- HCatalog provides a common schema for all data stored in Hadoop, regardless of the format or structure, making it easier for different tools and platforms to work with the same data. 
+- This also makes it easier for users to access and analyze data from different sources using a single interface.
 
 30. Explain about the different types of join in Hive.
-- 
+- ***Inner Join:*** An inner join returns only the matching records from both tables. It combines rows from two or more tables where the join condition is true. The resulting table contains only the rows that match in both tables.
+
+- ***Left Outer Join:*** A left outer join returns all the records from the left table and matching records from the right table. If there are no matching records in the right table, the result will contain null values.
+
+- ***Right Outer Join:*** A right outer join returns all the records from the right table and matching records from the left table. If there are no matching records in the left table, the result will contain null values.
+
+- ***Full Outer Join:*** A full outer join returns all the records from both tables. If there are no matching records in one table, the result will contain null values for that table.
 
 31. Is it possible to create a Cartesian join between 2 tables, using Hive?
-- 
+- es, it is possible to create a Cartesian join between two tables in Hive using the CROSS JOIN or CROSS JOIN ALL clause. 
+- The CROSS JOIN clause returns all possible combinations of rows between two tables, which can result in a very large output.
 
 32. Explain the SMB Join in Hive?
-- 
+- Sort Merge Bucket (SMB) join is an optimization technique used in Hive to improve the performance of join operations. 
+- It is a type of join that uses bucketing and sorting to speed up the join process.
+- In SMB join, the tables being joined are first bucketed and sorted based on the join key. 
+- This allows Hive to perform the join operation without having to shuffle or sort the data again. 
+- The join is then performed on the sorted and bucketed data, which improves performance by reducing the amount of data that needs to be read and processed.
 
 33. What is the difference between order by and sort by which one we should use?
-- 
+- ORDER BY is a clause that is used to sort the entire result set based on one or more columns in ascending or descending order. It guarantees a total order of the result set. When ORDER BY is used, the data is first sorted and then returned to the user. This means that the entire data set needs to be processed before any results can be returned. This can be resource-intensive and slow down the query processing time, particularly for large datasets.
+
+- On the other hand, SORT BY is used to sort the data within each reducer. It does not guarantee a total order of the result set. SORT BY is less resource-intensive than ORDER BY because it does not require the entire data set to be processed before any results can be returned. However, this can result in different partitions being returned in different orders.
+
+- In general, if you need to sort the entire data set in a specific order, ORDER BY is the better choice. However, if you only need to sort the data within each reducer, SORT BY can be faster and more efficient. It is important to note that SORT BY can only be used with a single reducer, so it may not be suitable for large datasets.
 
 34. What is the usefulness of the DISTRIBUTED BY clause in Hive?
-- 
+- The DISTRIBUTED BY clause in Hive is used to specify how the data should be distributed across the nodes in a Hadoop cluster. 
+- This clause is used in conjunction with the CLUSTER BY clause to optimize the performance of queries that involve grouping and aggregation.
+- By using the DISTRIBUTED BY clause, Hive can distribute the data in a way that is optimized for the specific query being executed. 
+- This can improve the performance of the query by reducing the amount of data that needs to be transferred between nodes and by allowing parallel processing of the data.
 
 35. How does data transfer happen from HDFS to Hive?
-- 
+- To transfer data from HDFS to Hive, Hive uses a mechanism called a "SerDe" (Serializer/Deserializer) to read and write data in a specific format. 
+- The data transfer from HDFS to Hive happens in a distributed manner, with different parts of the data being read by different nodes in the cluster. This allows Hive to process large amounts of data efficiently and in parallel.
+- In addition to using SerDes, Hive also supports other data transfer mechanisms such as Apache Thrift and Apache Avro. These mechanisms provide additional flexibility in how data is transferred between Hive and other tools in the Hadoop ecosystem.
 
 36. Wherever (Different Directory) I run the hive query, it creates a new metastore_db, please explain the reason for it?
-- 
+- Each time you run a Hive query from a different directory, a new metastore_db directory is created in that directory. 
+- This is because the embedded Derby database is a file-based database, and it stores its data in files in the directory where it is located.
 
 37. What will happen in case you have not issued the command: ‘SET hive.enforce.bucketing=true;’ before bucketing a table in Hive?
-- 
+- When you haven't issued the command ```SET hive.enforce.bucketing=true;``` before bucketing a table in Hive, the bucketing will still happen but it will not be enforced. 
+- This means that the data may not be evenly distributed across the buckets, and queries that rely on bucketing may not work as efficiently.
 
 38. Can a table be renamed in Hive?
-- 
+- Yes, a table can be renamed in Hive using the ALTER TABLE statement with the RENAME TO clause. 
+```
+ALTER TABLE old_table_name RENAME TO new_table_name;
+```
 
 39. Write a query to insert a new column(new_col INT) into a hive table at a position before an existing column (x_col)
-- 
+```
+ALTER TABLE h_table
+CHANGE COLUMN new_col INT
+BEFORE x_col;
+```
 
 40. What is serde operation in HIVE?
-- 
+- In Hive, SerDe (Serializer/Deserializer) stands for a set of built-in or external libraries that helps in the serialization and deserialization of the data in Hive tables. 
+- It is used to convert the structured data stored in HDFS or other storage systems into a format that Hive can use and vice versa. 
+- SerDe enables Hive to read and write data in various formats such as JSON, CSV, ORC, and Parquet.
 
 41. Explain how Hive Deserializes and serialises the data?
-- 
+- In Hive, SerDe stands for Serializer/Deserializer. It is a way to parse data between Hive and data storage formats like CSV, JSON, and TSV. SerDe in Hive can deserialize or serialize the data into the storage formats during reading and writing operations.
+
+- When a query is executed in Hive, the SerDe comes into action and converts the input data from the storage format to a format that can be processed by Hive. The deserialization process is done by the SerDe in the InputFormat, which is responsible for reading the data from the storage format and creating a list of objects for processing.
+
+- Similarly, during the output process, the SerDe in the OutputFormat serializes the processed data and converts it back to the storage format for storage.
+
+- The SerDe operations in Hive are configurable, and it allows us to use different SerDe implementations for different data formats. Additionally, users can also develop custom SerDe libraries for different data formats that are not supported by Hive by default.
 
 42. Write the name of the built-in serde in hive.
 - 

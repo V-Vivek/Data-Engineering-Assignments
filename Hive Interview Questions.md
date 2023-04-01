@@ -83,7 +83,8 @@ c. ODBC
 - ***Spark Mode:*** In Spark mode, Hive runs on top of Apache Spark and uses the Spark execution engine to execute queries. In this mode, Hive translates queries into Spark jobs that can be executed in memory, providing faster query processing times than MapReduce mode.
 
 7. Features and Limitations of Hive.
-- 
+- ***Features:*** Scalability, Schema-on-read, SQL-like interface, Integration with Hadoop ecosystem, etc.
+- ***Limitations:*** Latency, Lack of real-time updates, Complexity, etc.
 
 8. How to create a Database in HIVE?
 ```
@@ -103,19 +104,83 @@ FIELDS TERMINATED BY ',';
 ```
 
 10. What do you mean by describe and describe extended and describe formatted with respect to database and table
-- 
+- ***DESCRIBE:*** It is used to display basic metadata about a table
+- ***DESCRIBE EXTENDED:*** It is used to display additional metadata about a table such as the location of the table data in HDFS, the input format, output format, serialization format, and storage properties.
+- ***DESCRIBE FORMATTED:*** It is used to display even more detailed metadata about a table such as the table parameters, partition information, table statistics, and column statistics.
 
 11. How to skip header rows from a table in Hive?
-- 
+- We can skip header rows from a table by setting the table property ```skip.header.line.count``` to the number of header rows that you want to skip.
+- For e.g. to skip 2 header rows:
+```
+SET TBLPROPERTIES('skip.header.line.count'='2')
+```
 
 12. What is a hive operator? What are the different types of hive operators?
-- 
+- In Hive, an operator is a symbol or keyword that is used to perform a specific operation on one or more values or expressions. 
+- Operators are used in Hive queries to manipulate and transform data.
+- There are several types of operators in Hive:
+
+- ***Arithmetic Operators:*** Arithmetic operators are used to perform arithmetic operations on numeric data. The supported arithmetic operators in Hive are +, -, *, /, and % (modulus).
+
+- ***Comparison Operators:*** Comparison operators are used to compare values and return a Boolean result. The supported comparison operators in Hive are =, !=, <, >, <=, and >=.
+
+- ***Logical Operators:*** Logical operators are used to combine Boolean expressions and return a Boolean result. The supported logical operators in Hive are AND, OR, and NOT.
+
+- ***Bitwise Operators:*** Bitwise operators are used to perform bitwise operations on integer data. The supported bitwise operators in Hive are & (bitwise AND), | (bitwise OR), ^ (bitwise XOR), and ~ (bitwise NOT).
+
+- ***String Operators:*** String operators are used to manipulate string data. The supported string operators in Hive are CONCAT, || (concatenation), and LIKE (pattern matching).
+
+- ***Conditional Operators:*** Conditional operators are used to perform conditional operations on data. The supported conditional operators in Hive are CASE, WHEN, THEN, ELSE, and END.
+
+- ***Miscellaneous Operators:*** There are several miscellaneous operators in Hive, such as the CAST operator (used to convert data types), the IS NULL operator (used to check for null values), and the IN operator (used to test for membership in a set of values).
 
 13. Explain about the Hive Built-In Functions
-- 
+- Hive comes with a wide range of built-in functions that can be used to manipulate and transform data in Hive queries. 
+- These functions can be classified into several categories based on their functionality:
+
+- ***Mathematical Functions:*** These functions perform mathematical operations on numeric data. Examples of mathematical functions in Hive include ABS, EXP, LOG, POWER, ROUND, SIGN, SQRT, and TRUNC.
+
+- ***String Functions:*** These functions perform operations on string data. Examples of string functions in Hive include CONCAT, LENGTH, LOWER, UPPER, SUBSTR, TRIM, REPLACE, and REGEXP_REPLACE.
+
+- ***Date/Time Functions:*** These functions perform operations on date and time data. Examples of date/time functions in Hive include CURRENT_DATE, CURRENT_TIMESTAMP, YEAR, MONTH, DAY, HOUR, MINUTE, SECOND, and DATE_FORMAT.
+
+- ***Conditional Functions:*** These functions evaluate a condition and return a value based on whether the condition is true or false. Examples of conditional functions in Hive include CASE, WHEN, IF, and COALESCE.
+
+- ***Aggregate Functions:*** These functions perform calculations on groups of rows and return a single result. Examples of aggregate functions in Hive include SUM, AVG, MIN, MAX, COUNT, and GROUP_CONCAT.
+
+- ***Collection Functions:*** These functions operate on collections of values, such as arrays and maps. Examples of collection functions in Hive include ARRAY, MAP, SIZE, SORT_ARRAY, EXPLODE, and POSEXPL.
+
+- ***Type Conversion Functions:*** These functions convert values from one data type to another. Examples of type conversion functions in Hive include CAST, TO_DATE, TO_UNIX_TIMESTAMP, and FROM_UNIXTIME.
 
 14. Write hive DDL and DML commands.
-- 
+### DDL Commands:
+- ***CREATE DATABASE:*** Creates a new database in Hive.
+```
+CREATE DATABASE database_name;
+```
+
+- ***CREATE TABLE:*** Creates a new table in Hive.
+```
+CREATE TABLE table_name 
+(
+  column_name1 data_type1,
+  column_name2 data_type2,
+  ...
+  column_nameN data_typeN
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',';
+```
+
+### DML Commands:
+- ***SELECT:*** Retrieves data from one or more tables in Hive.
+```
+SELECT column_name1, column_name2, ... FROM table_name WHERE condition;
+```
+- ***INSERT:*** Inserts data into a table in Hive.
+```
+INSERT INTO table_name (column_name1, column_name2, ...) VALUES (value1, value2, ...);
+```
 
 15. Explain about SORT BY, ORDER BY, DISTRIBUTE BY and CLUSTER BY in Hive.
 - 
@@ -229,7 +294,8 @@ FIELDS TERMINATED BY ',';
 - 
 
 52. What does the following query do?
-```INSERT OVERWRITE TABLE employees
+```
+INSERT OVERWRITE TABLE employees
 PARTITION (country, state)
 SELECT ..., se.cnty, se.st
 FROM staged_employees se;

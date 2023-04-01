@@ -1,22 +1,86 @@
 # Hive Interview Questions
 
 1. What is the definition of Hive? What is the present version of Hive?
-- Hive is a Data Warehousing framework built on top of Hadoop. The current version of Hive is 4.0.0-aplha-2
+- Hive is a Data Warehousing framework built on top of Hadoop. 
+- It uses a SQL-like language called HiveQL to analyze and process data.
+- The current version of Hive is 4.0.0-aplha-2
 
 2. Is Hive suitable to be used for OLTP systems? Why?
-- 
+- Hive is not typically used for OLTP (Online Transaction Processing) systems. 
+- OLTP systems require low latency, high concurrency, and real-time transaction processing, which are not the primary strengths of Hive.
+- Hive is designed for batch processing and is optimized for performing complex queries on large volumes of data.
 
 3. How is HIVE different from RDBMS? Does hive support ACID transactions. If not then give the proper reason.
-- 
+- Hive is optimized for batch processing of big data, while RDBMS is designed for transactional processing of smaller datasets.
+- Hive does not support real-time transactions, whereas RDBMS is optimized for OLTP applications that require real-time transaction processing.
+- Hive is a schema-on-read system, which means that the data schema can be flexible and can evolve as new data is added to the system. RDBMS uses a fixed schema model that must be defined upfront and can be challenging to change.
+- Hive does not support full ACID transactions by default.
 
 4. Explain the hive architecture and the different components of a Hive architecture?
-- 
+### Hive Clients
+- Hive clients are the tools that users use to interact with Hive. Hive provides several client interfaces, including:
+
+a. Thrift
+- Thrift is a lightweight, cross-platform remote procedure call (RPC) framework that is used by Hive to provide a client interface for various programming languages such as Java, Python, C++, and others.
+
+b. JDBC
+- JDBC (Java Database Connectivity) is a standard Java API that enables Java programs to interact with databases. 
+- Hive provides a JDBC driver that allows Java programs to interact with Hive.
+
+c. ODBC
+- ODBC (Open Database Connectivity) is a standard interface for accessing data from a variety of database management systems. 
+- Hive provides an ODBC driver that allows applications that support ODBC to interact with Hive.
+
+### Hive Services
+- Hive consists of several services that work together to process user queries. The main Hive services are:
+
+#### HiveServer2
+- HiveServer2 is the successor of HiveServer1.
+- HiveServer1 does not handle concurrent requests from more than one client due to which it was replaced by HiveServer2.
+- HiveServer2 is the main service that provides a Thrift interface for clients to interact with Hive.
+- It receives queries from clients, compiles them, optimizes them and executes them on the Hadoop cluster.
+
+#### Hive Driver
+- The Hive driver receives the HiveQL statements submitted by the user through the command shell. 
+- It creates the session handles for the query and sends the query to the compiler.
+
+#### Hive Compiler
+- Hive compiler parses the query. 
+- It performs semantic analysis and type-checking on the different query blocks and query expressions by using the metadata stored in metastore.
+- It generates an execution plan.
+- The execution plan created by the compiler is the ***DAG(Directed Acyclic Graph)***, where each stage is a map/reduce job, operation on HDFS, a metadata operation.
+
+#### Optimizer
+- Optimizer performs the transformation operations on the execution plan and splits the task to improve efficiency and scalability.
+
+#### Execution Engine
+- Execution engine, after the compilation and optimization steps, executes the execution plan created by the compiler in order of their dependencies using Hadoop.
+
+#### Metastore
+- Metastore is a central repository that stores the metadata information about the structure of tables and partitions, including column and column type information.
+- It also stores information of serializer and deserializer, required for the read/write operation and HDFS files where data is stored. 
+- This metastore is generally a relational database.
+- Metastore provides a Thrift interface for querying and manipulating Hive metadata.
 
 5. Mention what Hive query processor does? And Mention what are the components of a Hive query processor?
-- 
+- The Hive query processor is responsible for interpreting HiveQL queries and generating a query plan that can be executed on Hadoop.
+- The query processor analyzes the query, determines the tables involved, applies any necessary filters or joins and creates a physical execution plan for the query.
+
+- The components of a Hive query processor are as follows:
+- ***Parser:*** The parser component of the query processor is responsible for parsing the HiveQL query and breaking it down into a logical representation that can be processed further. The parser checks for syntax errors and ensures that the query conforms to the HiveQL grammar.
+
+- ***Semantic Analyzer:*** The semantic analyzer component of the query processor performs semantic analysis on the query and validates it against the metadata stored in the metastore. The semantic analyzer checks for errors like missing tables or columns, ensures that the query conforms to the data types of the columns, and performs any necessary type conversions.
+
+- ***Query Optimizer:*** The query optimizer component of the query processor takes the logical query plan generated by the semantic analyzer and optimizes it to improve query performance. The optimizer determines the most efficient way to execute the query by selecting the optimal join order, applying filter pushdown, and choosing the most appropriate file format and compression algorithm.
+
+- ***Execution Engine:*** The execution engine component of the query processor is responsible for executing the physical query plan generated by the optimizer. The execution engine coordinates the execution of map-reduce jobs and other operations necessary to execute the query on Hadoop.
 
 6. What are the three different modes in which we can operate Hive?
-- 
+- ***Local Mode:*** In local mode, Hive runs in a single JVM without using Hadoop. This mode is typically used for development and testing purposes when the data size is small and does not require the distributed processing capabilities of Hadoop.
+
+- ***MapReduce Mode:*** In MapReduce mode, Hive runs on top of Hadoop and uses the Hadoop MapReduce framework to execute queries. In this mode, Hive translates queries into MapReduce jobs that are distributed across the Hadoop cluster, allowing for parallel processing of large datasets.
+
+- ***Spark Mode:*** In Spark mode, Hive runs on top of Apache Spark and uses the Spark execution engine to execute queries. In this mode, Hive translates queries into Spark jobs that can be executed in memory, providing faster query processing times than MapReduce mode.
 
 7. Features and Limitations of Hive.
 - 

@@ -397,34 +397,57 @@ BEFORE x_col;
 - The SerDe operations in Hive are configurable, and it allows us to use different SerDe implementations for different data formats. Additionally, users can also develop custom SerDe libraries for different data formats that are not supported by Hive by default.
 
 42. Write the name of the built-in serde in hive.
-- 
+- The built-in serde in Hive is called LazySimpleSerDe.
 
 43. What is the need of custom Serde?
-- 
+- LazySimpleSerDe, can handle only simple text data in a delimited format. 
+- However, there may be situations where the data is stored in a different format, such as JSON, Avro, or ORC, and the default SerDe cannot handle it. In such cases, a custom SerDe can be written to handle the specific data format.
 
 44. Can you write the name of a complex data type(collection data types) in Hive?
-- 
+- Array
+- Map
+- Struct
+- Union
 
 45. Can hive queries be executed from script files? How?
-- 
+- Yes, Hive queries can be executed from script files. We can create a script file with the extension ".hql" and write the Hive queries in it.
+- We can use the Hive CLI command source followed by the path of the script file to execute the Hive queries in the script.
+```
+source /path/to/script.hql;
+```
 
 46. What are the default record and field delimiter used for hive text files?
-- 
+- The default record delimiter used for Hive text files is the newline character (\n), and the default field delimiter is the tab character (\t).
 
 47. How do you list all databases in Hive whose name starts with s?
-- 
+```
+SHOW DATABASES LIKE 's*';
+```
 
 48. What is the difference between LIKE and RLIKE operators in Hive?
-- 
+- ***LIKE operator***: It is used to match a string pattern with a specified string, where the pattern may include % and _ wildcards.
+```
+SELECT * FROM my_table WHERE name LIKE 'J%';
+```
+
+- ***RLIKE operator***: It is used to match a string pattern using a regular expression.
+```
+SELECT * FROM my_table WHERE name RLIKE '.*apple.*';
+```
 
 49. How to change the column data type in Hive?
-- 
+```
+ALTER TABLE table_name
+CHANGE column_name column_name new_data_type;
+```
 
 50. How will you convert the string ’51.2’ to a float value in the particular column?
-- 
+```
+SELECT CAST(column_name AS FLOAT) FROM table_name;
+```
 
-51. What will be the result when you cast ‘abc’ (string) as INT?
-- 
+  51. What will be the result when you cast ‘abc’ (string) as INT?
+- It will result in a NULL value as 'abc' cannot be converted to an integer value.
 
 52. What does the following query do?
 ```
@@ -433,10 +456,14 @@ PARTITION (country, state)
 SELECT ..., se.cnty, se.st
 FROM staged_employees se;
 ```
-- 
+- It inserts data into the "employees" table by selecting data from another table "staged_employees". It also partitions the data by country and state columns.
 
 53. Write a query where you can overwrite data in a new table from the existing table.
-- 
+```
+INSERT OVERWRITE TABLE new_table
+SELECT *
+FROM existing_table;
+```
 
 54. What is the maximum size of a string data type supported by Hive? Explain how Hive supports binary formats.
 - 

@@ -466,91 +466,181 @@ FROM existing_table;
 ```
 
 54. What is the maximum size of a string data type supported by Hive? Explain how Hive supports binary formats.
-- 
+- In Hive, the maximum size of a string data type is 2 GB.
+- Hive supports binary formats through the use of SerDes. SerDes are responsible for de-serializing binary data from HDFS into Hive tables and serializing data back from Hive tables into binary data stored in HDFS.
 
 55. What File Formats and Applications Does Hive Support?
-- 
+- Hive supports various file formats, including text files, sequence files, ORC files, and Parquet files.
+- Hive also supports various applications such as Apache Tez, Apache Spark, and Apache HBase.
 
 56. How do ORC format tables help Hive to enhance its performance?
-- 
+- ORC (Optimized Row Columnar) format tables in Hive help to enhance its performance in several ways:
+
+- ***Compression:*** ORC format tables support highly efficient compression techniques such as Zlib, Snappy, and LZO. This reduces the storage space required by the tables, resulting in faster I/O operations.
+
+- ***Encoding:*** ORC format tables support advanced encoding techniques such as Dictionary Encoding, Run Length Encoding, and Bit Packing. This encoding technique reduces the data size of the table and improves query performance.
+
+- ***Column Pruning:*** ORC format tables store column statistics, which allows Hive to prune unnecessary columns during query execution. This reduces the amount of data that needs to be read from disk, resulting in faster query execution.
+
+- ***Predicate Pushdown:*** ORC format tables support predicate pushdown, which means that the filtering of records can be pushed down to the storage layer. This reduces the amount of data that needs to be processed, resulting in faster query execution.
+
+- ***Vectorization:*** ORC format tables support vectorization, which allows Hive to perform operations on multiple rows of data at once, resulting in faster query execution.
 
 57. How can Hive avoid mapreduce while processing the query?
-- 
+- To avoid MapReduce while processing the query we can set the ```hive.exec.mode.local.auto=true```.
 
 58. What is view and indexing in hive?
-- 
+- A view is a virtual table that does not store data on its own but instead displays the result of a query on other tables. A view is created using a SELECT statement, and its output is treated as a regular table.
+
+- An index is a structure that is created on one or more columns of a table to speed up the query processing. An index allows faster data retrieval, as it stores the pointer to the actual data location on disk.
 
 59. Can the name of a view be the same as the name of a hive table?
-- 
+- Hive allows views and tables to have the same name as long as they are in different databases.
 
 60. What types of costs are associated in creating indexes on hive tables?
-- 
+- ***Creation cost:*** This is the cost of creating the index structure, which involves reading the data from the table and building the index. The time taken for creating the index structure depends on the size of the table and the number of columns on which the index is created.
+
+- ***Maintenance cost:*** This is the cost associated with updating the index whenever new data is added to or deleted from the table. The more frequently the table is updated, the higher the maintenance cost.
+
+- ***Storage cost:*** The storage cost for indexes is usually small compared to the table data, but it can still be significant for large tables with many indexes.
+
+- ***Query processing cost:*** Query processing cost may be reduced when indexes are used, as they can speed up the query processing by reducing the amount of data that needs to be scanned.
 
 61. Give the command to see the indexes on a table.
-- 
+```
+SHOW INDEXES ON table_name;
+```
 
 62. Explain the process to access subdirectories recursively in Hive queries.
-- 
+- To access subdirectories recursively we can use the INPUT__FILE__NAME virtual column. 
+- This virtual column provides the full path of the input file being processed by the mapper. 
+- By extracting the directory path from this column, we can access the subdirectories recursively in Hive queries.
+- Here's an example query to access subdirectories recursively in Hive:
+```
+SELECT *
+FROM my_table
+WHERE input__file__name LIKE '/path/to/directory/%'
+```
+- The % character is used as a wildcard to match any subdirectory under the specified directory.
 
 63. If you run a select * query in Hive, why doesn't it run MapReduce?
-- 
+- When a user runs a SELECT * query in Hive, it does not run MapReduce because Hive stores metadata about the data in its metastore, which includes the schema of the table and the location of the data in HDFS. When the query is executed, Hive uses this metadata to read the data directly from HDFS without the need for a MapReduce job. 
 
 64. What are the uses of Hive Explode?
-- 
+- explode() is a built-in function used to transform elements in a collection into individual rows. 
+- The function takes a collection (such as an array or map) as input and generates a new row for each element in the collection.
+- Here are some use cases for explode() in Hive:
+
+- ***Flattening arrays:*** If a table column contains an array of values, explode() can be used to split the array into individual rows. This is useful when you want to analyze the individual elements of an array.
+
+- ***Exploding maps:*** If a table column contains a map of key-value pairs, explode() can be used to split the map into individual rows. This is useful when you want to analyze the individual key-value pairs in a map.
+
+- ***Joining tables:*** explode() can be used to join two tables based on a common column that contains a collection. For example, if one table has a column that contains an array of IDs and another table has a column that contains a single ID, explode() can be used to join the two tables by matching each ID in the array with the single ID.
+
+- ***Cross-joining:*** explode() can be used to perform a cross-join between a table and a collection. For example, if a table has a column that contains an array of values and you want to cross-join the table with each element in the array, you can use explode() to generate the necessary rows.
 
 65. What is the available mechanism for connecting applications when we run Hive as a server?
-- 
+- ***JDBC (Java Database Connectivity):*** This is a standard Java API that allows Java programs to access databases, including Hive. JDBC provides a set of interfaces and classes for database connectivity and allows users to execute SQL queries and retrieve data from a database.
+
+- ***ODBC (Open Database Connectivity):*** This is a standard interface for connecting applications to databases. ODBC provides a set of functions for database connectivity and allows applications to execute SQL queries and retrieve data from a database. Hive provides an ODBC driver that allows applications to connect to Hive using ODBC.
 
 66. Can the default location of a managed table be changed in Hive?
-- 
+- es, the default location of a managed table in Hive can be changed. It can be done by specifying the LOCATION clause while creating a table or by altering the table location using the ALTER TABLE command.
+```
+CREATE TABLE my_table (col1 INT, col2 STRING)
+LOCATION '/my/custom/location';
+```
 
 67. What is the Hive ObjectInspector function?
-- 
+- In Hive, the ObjectInspector function is used to inspect the data types of objects in the Hive runtime environment. It is a built-in function that is used by Hive to serialize and deserialize data between the MapReduce framework and the Hive runtime environment.
 
 68. What is UDF in Hive?
-- 
+- In Hive, a UDF is a function that can be defined by the user to manipulate and process data during the query execution.
+- Hive allows users to define their own UDFs to perform custom operations that are not available in the built-in functions. 
+- UDFs can be written in various programming languages like Java, Python, and Scala.
 
 69. Write a query to extract data from hdfs to hive.
-- 
+```
+LOAD DATA INPATH '/path/to/hdfs/file' OVERWRITE INTO TABLE table_name;
+```
 
 70. What is TextInputFormat and SequenceFileInputFormat in hive.
-- 
+- ***TextInputFormat*** is the default file input format used in Hive, which reads input files as plain text files and represents each line in the file as a separate record.
+
+- ***SequenceFileInputFormat*** is a binary file input format that allows users to store complex data structures in a compressed binary format. It reads data from files stored in Hadoop's SequenceFile format, which can be used to store large amounts of structured data in a compact and efficient way.
 
 71. How can you prevent a large job from running for a long time in a hive?
-- 
+- By setting the MapReduce jobs to execute in strict mode ```set hive.mapred.mode=strict;```
+- The strict mode ensures that the queries on partitioned tables cannot execute without defining a WHERE clause.
+- The number of reducers should be set appropriately based on the data size and the available resources. Setting too few reducers can cause the job to run for a long time, while setting too many can result in unnecessary overhead.
 
 72. When do we use explode in Hive?
-- 
+- explode() function is used to transform a collection of items in a single column of a table into multiple rows. 
+- It takes an array or a map column as input and returns a new row for each element in the array or map. 
+- This is useful when dealing with complex data types such as arrays and maps, which may contain multiple values that need to be processed individually.
 
 73. Can Hive process any type of data formats? Why? Explain in very detail
-- 
+- Hive can process a variety of data formats, including text files, ORC files, Parquet files, and Avro files, among others. 
+- This is possible because Hive uses a pluggable storage handler interface, which allows users to define their own input/output formats and SerDes for custom data formats.
+- Hive supports text files with various delimiters, including tab-separated, comma-separated, and other user-defined delimiters. 
+- It can also handle binary data formats such as ORC, Parquet, and Avro, which offer higher performance and compression compared to text files.
 
 74. Whenever we run a Hive query, a new metastore_db is created. Why?
-- 
+- The metastore in Hive is a repository that stores the metadata of all the tables, views, partitions, and databases in Hive. 
+- It also stores the mapping between HDFS data and Hive tables. Whenever we run a Hive query, it accesses the metastore to retrieve the metadata of the tables being used in the query.
+- However, a new metastore_db should not be created every time a Hive query is run. 
+- The metastore_db is created only once when we initialize Hive for the first time. After that, Hive reuses the same metastore_db for subsequent queries.
+- If a new metastore_db is being created every time a Hive query is run, it could be due to a misconfiguration in Hive or a permission issue.
 
 75. Can we change the data type of a column in a hive table? Write a complete query.
-- 
+- Yes, we can change the data type of a column in a Hive table using the ALTER TABLE command. Here is an example query:
+```
+ALTER TABLE my_table
+CHANGE COLUMN column_name column_new_datatype
+```
 
 76. While loading data into a hive table using the LOAD DATA clause, how do you specify it is a hdfs file and not a local file ?
-- 
+- To specify that the data being loaded using the LOAD DATA clause is from HDFS and not a local file, we need to specify the full HDFS path in the location parameter of the command.
+```
+LOAD DATA INPATH '/user/data/' INTO TABLE sample_table;
+```
 
 77. What is the precedence order in Hive configuration?
-- 
+- The order of precedence in Hive configuration is as follows:
+1. Configuration property value set explicitly in the query or script.
+2. Configuration property value set for the Hive session.
+3. Configuration property value set in hive-site.xml configuration file.
+4. Configuration property value set in the Hadoop configuration file (core-site.xml, hdfs-site.xml, mapred-site.xml, etc.).
+- If a property is not found in any of the above levels, then the default value is used.
 
 78. Which interface is used for accessing the Hive metastore?
-- 
+- The Hive Metastore can be accessed using the Thrift service API provided by the Hive Metastore Server. 
+- The Hive CLI and HiveServer2 are two other commonly used interfaces to interact with the Hive metastore.
 
 79. Is it possible to compress json in the Hive external table ?
-- 
+- Yes, it is possible to compress JSON data in Hive external tables. You can use compression codecs such as Gzip, Bzip2, or Snappy to compress the data in JSON format.
+- To compress JSON data, you can specify the compression codec while creating the external table.
 
 80. What is the difference between local and remote metastores?
-- 
+- ***Local Metastore:*** In this case, the metastore is created and managed locally on the same machine as the Hive service. This is the default configuration for Hive, and it is suitable for small to medium-sized deployments. However, a local metastore can become a bottleneck if multiple Hive services are accessing it simultaneously, or if the number of tables and partitions in the system grows very large.
+
+- ***Remote Metastore:*** A remote metastore is a separate database service that is dedicated to storing and managing Hive metadata. The advantage of using a remote metastore is that it can handle a large number of tables and partitions more efficiently, and it can be shared by multiple Hive services running on different machines. A remote metastore also provides better fault tolerance and scalability, as the metadata is stored separately from the Hive service.
 
 81. What is the purpose of archiving tables in Hive?
-- 
+- Archiving tables in Hive means moving a table or partition and its associated data from its current location to a new location, while still retaining the ability to query the data. 
+- The main purpose of archiving tables is to free up space in the current location for new data or to optimize the query performance.
+- In addition, archiving tables can also be useful for backup and disaster recovery purposes. By maintaining archived copies of data, an organization can quickly recover data in the event of a system failure or other data loss event.
 
 82. What is DBPROPERTY in Hive?
-- 
+- DBPROPERTY is a Hive function that allows you to retrieve metadata information about the current database. It returns the value of the specified property for the current database.
 
 83. Differentiate between local mode and MapReduce mode in Hive.
-- 
+- The main differences between local mode and MapReduce mode in Hive are:
+
+- ***Execution:*** In local mode, the query runs on the local file system of the machine where Hive is installed, whereas in MapReduce mode, the query is executed as a MapReduce job on the Hadoop cluster.
+
+- ***Scalability:*** Local mode is suitable for testing small amounts of data or running ad-hoc queries, whereas MapReduce mode is used for processing large amounts of data and executing complex queries.
+
+- ***Performance:*** MapReduce mode can provide better performance than local mode, especially for large data sets, because it takes advantage of the distributed processing power of the Hadoop cluster.
+
+- ***Dependencies:*** In local mode, the Hive query does not have any dependencies on the Hadoop cluster, whereas in MapReduce mode, the Hive query requires a Hadoop cluster to be set up and configured properly.

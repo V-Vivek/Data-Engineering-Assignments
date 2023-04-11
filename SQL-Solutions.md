@@ -937,7 +937,13 @@ AND user_id IN  (SELECT DISTINCT user_id FROM user_actions WHERE EXTRACT(MONTH F
 
 Q83 - Solution
 ```
-
+WITH T1 AS
+(
+	SELECT searches, GENERATE_SERIES(1, num_users)
+	FROM search_frequency
+	ORDER BY searches
+)
+SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY searches) FROM T1;
 ```
 
 Q84 - Solution
